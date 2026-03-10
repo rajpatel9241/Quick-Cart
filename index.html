@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>QuickCart | Smart Kitchen Oil Brush</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
+<title>QuickCart | Smart Oil Brush Bottle</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>
 
 *{
 margin:0;
@@ -19,286 +12,183 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
-background:linear-gradient(135deg,#eef2ff,#f9fafc);
+background:#f5f7fb;
 color:#222;
-
 }
-
-/* HEADER */
 
 header{
-
 text-align:center;
-padding:25px;
-font-size:32px;
+font-size:34px;
 font-weight:700;
-letter-spacing:1px;
-
-background:linear-gradient(90deg,#ff4b2b,#ff416c);
--webkit-background-clip:text;
-color:transparent;
-
+padding:25px;
+color:#ff3c3c;
 }
 
-/* CONTAINER */
-
 .container{
-
 max-width:1100px;
 margin:auto;
 padding:20px;
-
 }
 
-/* PRODUCT CARD */
+/* PRODUCT */
 
 .product{
-
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:40px;
-
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(10px);
-
+background:white;
 padding:35px;
-
-border-radius:18px;
-
-box-shadow:0 15px 40px rgba(0,0,0,0.12);
-
-transition:0.3s;
-
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
-
-.product:hover{
-
-transform:translateY(-5px);
-
-}
-
-/* IMAGE */
 
 .product img{
-
 width:100%;
-border-radius:12px;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-
+border-radius:10px;
 }
 
-/* TITLE */
+.badge{
+background:#ff3c3c;
+color:white;
+padding:5px 10px;
+border-radius:6px;
+display:inline-block;
+margin-bottom:10px;
+}
 
-.product-title{
-
+.title{
 font-size:30px;
 font-weight:700;
-margin-bottom:10px;
-
 }
 
-/* PRICE */
-
 .price{
-
-font-size:28px;
+margin-top:10px;
+font-size:26px;
+color:#ff3c3c;
 font-weight:700;
-color:#ff2e2e;
-
 }
 
 .old{
-
 text-decoration:line-through;
 color:gray;
 margin-right:10px;
-
 }
-
-/* BADGE */
-
-.sale-badge{
-
-background:#ff2e2e;
-color:white;
-
-padding:6px 12px;
-
-border-radius:6px;
-
-display:inline-block;
-
-font-size:14px;
-
-margin-bottom:10px;
-
-}
-
-/* TIMER */
 
 .timer{
-
-margin:15px 0;
-
 background:#111;
 color:white;
-
-display:inline-block;
-
 padding:8px 14px;
-
+display:inline-block;
 border-radius:6px;
-
+margin-top:10px;
 }
 
-/* BUTTON */
-
 .order-btn{
-
 display:inline-block;
-
 margin-top:15px;
-
-background:linear-gradient(90deg,#ff416c,#ff4b2b);
-
+background:#ff3c3c;
 color:white;
-
-padding:15px 28px;
-
-border-radius:30px;
-
-font-size:18px;
-
-text-decoration:none;
-
+padding:14px 25px;
+border-radius:8px;
 font-weight:600;
-
-transition:0.3s;
-
-box-shadow:0 10px 20px rgba(255,65,108,0.4);
-
+text-decoration:none;
 }
 
 .order-btn:hover{
-
-transform:scale(1.05);
-
+background:#d62828;
 }
 
 /* FEATURES */
 
 .features{
-
 margin-top:40px;
-
 background:white;
-
 padding:30px;
-
 border-radius:15px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
 }
 
 .features h2{
-
 text-align:center;
 margin-bottom:20px;
-
 }
 
 .features ul{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:15px;
-
 }
 
 .features li{
-
 background:#f7f7f7;
+padding:12px;
+border-radius:6px;
+}
 
-padding:14px;
+/* REVIEWS */
 
-border-radius:8px;
+.reviews{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
 
+.review{
+border-bottom:1px solid #eee;
+padding:15px 0;
+}
+
+.review:last-child{
+border:none;
+}
+
+.stars{
+color:#ffb703;
 }
 
 /* TRUST */
 
 .trust{
-
 margin-top:30px;
-
 text-align:center;
-
-font-size:15px;
-
-color:#666;
-
+font-size:16px;
+color:#555;
 }
 
-/* ORDER FORM */
+/* FORM */
 
 .order-form{
-
 margin-top:40px;
-
 background:white;
-
 padding:30px;
-
 border-radius:15px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
 }
 
 .order-form h2{
-
 text-align:center;
 margin-bottom:20px;
-
 }
 
 form input, form textarea{
-
 width:100%;
-
 padding:12px;
-
 margin-bottom:15px;
-
-border:1px solid #ddd;
-
-border-radius:8px;
-
+border:1px solid #ccc;
+border-radius:6px;
 }
 
 form button{
-
 width:100%;
-
 padding:15px;
-
-background:linear-gradient(90deg,#ff416c,#ff4b2b);
-
+background:#ff3c3c;
 border:none;
-
 color:white;
-
 font-size:18px;
-
-border-radius:30px;
-
+border-radius:8px;
 cursor:pointer;
-
 }
 
 /* MOBILE */
@@ -306,73 +196,66 @@ cursor:pointer;
 @media(max-width:768px){
 
 .product{
-
 grid-template-columns:1fr;
-
 }
 
 .features ul{
-
 grid-template-columns:1fr;
-
 }
 
 }
 
-</style>
-
-</head>
-
-<body>
-
-<header>QuickCart</header>
-
-<div class="container">
-
-<section class="product">
-
-<div>
-
-<img src="https://i.imgur.com/7XKZ6QW.jpg">
-
-</div>
-
-<div>
-
-<div class="sale-badge">🔥 Limited Offer</div>
-
-<div class="product-title">Smart Oil Brush Bottle</div>
-
-<div class="price">
-
+</style></head><body><header>QuickCart</header><div class="container"><section class="product"><div>
+<img src="https://images.unsplash.com/photo-1604908176997-4310b5e1c3bb?auto=format&fit=crop&w=900&q=60">
+</div><div><div class="badge">🔥 Limited Offer</div><div class="title">Smart Oil Brush Bottle</div><div class="price">
 <span class="old">₹299</span> ₹199
-
-</div>
-
-<div class="timer">
-
+</div><div class="timer">
 Offer Ends In: <span id="countdown"></span>
-
-</div>
-
-<p>
-
+</div><p>
 Perfect kitchen oil brush bottle. Spread oil evenly while cooking BBQ, chicken, salad or roti.
+</p><a href="#order" class="order-btn">Order Now</a>
 
-</p>
+</div></section><section class="features"><h2>Why Customers Love It</h2><ul><li>🍗 Perfect for BBQ & Cooking</li><li>🥗 Best for Salad Dressing</li><li>🔥 Heat Resistant Brush</li><li>🧴 Leakproof Oil Bottle</li><li>🧼 Easy to Clean</li><li>⭐ Premium Kitchen Tool</li></ul></section><section class="reviews"><h2 style="text-align:center;margin-bottom:20px;">Customer Reviews</h2><div class="review">
+<strong>Rahul Sharma</strong>
+<div class="stars">★★★★★</div>
+<p>Very useful product for cooking. Quality is amazing.</p>
+</div><div class="review">
+<strong>Anita Verma</strong>
+<div class="stars">★★★★★</div>
+<p>I use it daily in kitchen. Totally worth the price.</p>
+</div><div class="review">
+<strong>Rohit Kumar</strong>
+<div class="stars">★★★★☆</div>
+<p>Good product and delivery was fast.</p>
+</div></section><div class="trust">🚚 Free Delivery | 💳 Cash On Delivery | ⭐ 4.8/5 Customer Rating
 
-<a href="#order" class="order-btn">Order Now</a>
+</div><section class="order-form" id="order"><h2>Place Your Order</h2><form action="https://formsubmit.co/rk92412838@gmail.com" method="POST"><input type="text" name="Name" placeholder="Your Name" required><input type="tel" name="Phone" placeholder="Phone Number" required><textarea name="Address" placeholder="Full Address" rows="4" required></textarea><input type="hidden" name="_captcha" value="false"><button type="submit">Order Now</button>
 
-</div>
+</form></section></div><script>
 
-</section>
+var countDownDate = new Date().getTime() + (6 * 60 * 60 * 1000);
 
-<section class="features">
+var x = setInterval(function() {
 
-<h2>Why Customers Love It</h2>
+var now = new Date().getTime();
 
-<ul>
+var distance = countDownDate - now;
 
-<li>🍗 Perfect for BBQ & Chicken</li>
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-<li…
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("countdown").innerHTML =
+hours + "h " + minutes + "m " + seconds + "s ";
+
+if (distance < 0) {
+clearInterval(x);
+document.getElementById("countdown").innerHTML = "EXPIRED";
+}
+
+}, 1000);
+
+</script></body>
+</html>
