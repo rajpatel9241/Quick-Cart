@@ -1,89 +1,275 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickCart - Smart Oil Dispenser</title><style>
+<title>QuickCart</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
 
 body{
-font-family:Arial, sans-serif;
-margin:0;
-background:#f5f5f5;
+background:#f4f6fb;
+color:#222;
 }
 
 header{
 background:#111;
 color:white;
-padding:15px;
+padding:20px;
 text-align:center;
-font-size:24px;
+font-size:26px;
+font-weight:bold;
 }
 
 .container{
-max-width:500px;
+max-width:1100px;
 margin:auto;
 padding:20px;
-background:white;
-margin-top:30px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
-.product-img{
+.product{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product img{
 width:100%;
 border-radius:10px;
+}
+
+.title{
+font-size:30px;
+font-weight:bold;
+margin-bottom:10px;
 }
 
 .price{
-font-size:22px;
-color:#ff4d00;
+font-size:28px;
+color:#e63946;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.timer{
+background:#000;
+color:white;
+padding:8px 12px;
+display:inline-block;
+border-radius:6px;
+margin-bottom:15px;
+}
+
+.btn{
+background:#ff3c3c;
+color:white;
+padding:14px 24px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
 margin-top:10px;
 }
 
-.old{
-text-decoration:line-through;
-color:gray;
-margin-left:10px;
+.features{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:12px;
 }
 
-form{
-margin-top:20px;
+.features h2{
+text-align:center;
+margin-bottom:20px;
 }
 
-input,textarea{
+.features ul{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.features li{
+background:#f5f5f5;
+padding:10px;
+border-radius:6px;
+}
+
+.reviews{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:12px;
+}
+
+.review{
+border-bottom:1px solid #eee;
+padding:10px 0;
+}
+
+.order{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:12px;
+}
+
+form input, form textarea{
 width:100%;
 padding:12px;
-margin-top:10px;
-border-radius:6px;
+margin-bottom:15px;
 border:1px solid #ccc;
+border-radius:6px;
 }
 
-button{
+form button{
 width:100%;
-padding:14px;
-background:#ff4d00;
-color:white;
+padding:15px;
+background:#ff3c3c;
 border:none;
-border-radius:6px;
-margin-top:15px;
-font-size:16px;
+color:white;
+font-size:18px;
+border-radius:8px;
 cursor:pointer;
 }
 
-footer{
-text-align:center;
-margin-top:30px;
-padding:15px;
-font-size:14px;
-color:#555;
+@media(max-width:768px){
+.product{
+grid-template-columns:1fr;
+}
 }
 
-</style></head><body><header>
-QuickCart
-</header><div class="container"><img class="product-img" src="https://via.placeholder.com/400x300"><h2>Smart Oil Dispenser Brush</h2><p>Cooking me oil control karne ka smart tareeka. Healthy cooking ab aur easy.</p><div class="price">
-₹249 <span class="old">₹499</span>
-</div><h3>Order Now</h3><form action="https://formsubmit.co/YOUR-EMAIL@gmail.com" method="POST"><input type="text" name="Name" placeholder="Your Name" required><input type="tel" name="Phone" placeholder="Phone Number" required><textarea name="Address" placeholder="Full Address" required></textarea><input type="hidden" name="_captcha" value="false"><button type="submit">Place Order</button>
+</style>
+</head>
 
-</form></div><footer>
-© 2026 QuickCart
-</footer></body>
+<body>
+
+<header>QuickCart</header>
+
+<div class="container">
+
+<section class="product">
+
+<div>
+<img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db" id="mainImage">
+</div>
+
+<div>
+
+<div class="title">Portable Mini Blender</div>
+
+<div class="price">₹999</div>
+
+<div class="timer">
+Offer Ends In: <span id="countdown"></span>
+</div>
+
+<p>
+Make fresh juice anywhere. Perfect for gym, travel and healthy lifestyle.
+</p>
+
+<a href="#order" class="btn">Order Now</a>
+
+</div>
+
+</section>
+
+
+<section class="features">
+
+<h2>Features</h2>
+
+<ul>
+<li>⚡ Powerful Motor</li>
+<li>🔋 USB Rechargeable</li>
+<li>🥤 Smoothie Anywhere</li>
+<li>🧼 Easy Clean</li>
+<li>🎒 Portable Design</li>
+<li>💪 Premium Build</li>
+</ul>
+
+</section>
+
+
+<section class="reviews">
+
+<h2 style="text-align:center;margin-bottom:20px;">Customer Reviews</h2>
+
+<div class="review">
+★★★★★ Rahul Sharma  
+<p>Very powerful blender. Totally worth it.</p>
+</div>
+
+<div class="review">
+★★★★★ Anita Verma  
+<p>Perfect for gym and travel.</p>
+</div>
+
+<div class="review">
+★★★★☆ Rohit Kumar  
+<p>Good quality and fast delivery.</p>
+</div>
+
+</section>
+
+
+<section class="order" id="order">
+
+<h2 style="text-align:center;margin-bottom:20px;">Place Your Order</h2>
+
+<form action="https://formsubmit.co/rk92412838@gmail.com" method="POST">
+
+<input type="text" name="Name" placeholder="Your Name" required>
+
+<input type="tel" name="Phone" placeholder="Phone Number" required>
+
+<textarea name="Address" placeholder="Full Address" required></textarea>
+
+<input type="hidden" name="_captcha" value="false">
+
+<button type="submit">Place Order</button>
+
+</form>
+
+</section>
+
+</div>
+
+<script>
+
+var countDownDate = new Date().getTime() + (6*60*60*1000);
+
+var x = setInterval(function(){
+
+var now = new Date().getTime();
+var distance = countDownDate - now;
+
+var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+var seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+hours+"h "+minutes+"m "+seconds+"s";
+
+if(distance<0){
+clearInterval(x);
+document.getElementById("countdown").innerHTML="EXPIRED";
+}
+
+},1000);
+
+</script>
+
+</body>
 </html>
