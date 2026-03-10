@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>QuickCart - Smart Oil Brush Bottle</title>
+<title>QuickCart | Smart Oil Brush Bottle</title>
 
 <style>
 
@@ -13,7 +12,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial, sans-serif;
 }
 
 body{
@@ -23,7 +22,7 @@ color:#222;
 
 header{
 text-align:center;
-font-size:30px;
+font-size:32px;
 font-weight:bold;
 padding:20px;
 color:#ff4d4d;
@@ -38,239 +37,167 @@ padding:20px;
 /* PRODUCT */
 
 .product{
-
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:40px;
-
 background:white;
 padding:30px;
-
 border-radius:12px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
 }
 
-.product img{
-
+.main-img{
 width:100%;
 border-radius:10px;
+}
 
+.thumbs{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.thumbs img{
+width:70px;
+border-radius:6px;
+cursor:pointer;
+border:2px solid transparent;
+}
+
+.thumbs img:hover{
+border-color:#ff4d4d;
 }
 
 .product-title{
-
 font-size:28px;
 font-weight:bold;
 margin-bottom:10px;
-
 }
 
 .price{
-
 font-size:26px;
 color:#e63946;
 font-weight:bold;
 }
 
-.old-price{
-
+.old{
 text-decoration:line-through;
 color:gray;
 margin-right:10px;
-
 }
 
 .timer{
-
 background:#111;
 color:white;
-
 display:inline-block;
-
 padding:8px 14px;
-
 border-radius:6px;
-
 margin-top:10px;
-
 }
 
 .order-btn{
-
 display:inline-block;
-
 background:#ff4d4d;
-
 color:white;
-
 padding:14px 25px;
-
 border-radius:8px;
-
 text-decoration:none;
-
 font-size:18px;
-
 margin-top:15px;
-
 }
 
 /* FEATURES */
 
 .features{
-
 margin-top:40px;
-
 background:white;
-
 padding:30px;
-
 border-radius:12px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.05);
-
 }
 
 .features h2{
-
 text-align:center;
 margin-bottom:20px;
-
 }
 
 .features ul{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:15px;
-
 }
 
 .features li{
-
 background:#f7f7f7;
-
 padding:12px;
-
 border-radius:6px;
-
 }
 
 /* REVIEWS */
 
 .reviews{
-
 margin-top:40px;
-
 background:white;
-
 padding:30px;
-
 border-radius:12px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.05);
-
 }
 
 .review{
-
 border-bottom:1px solid #eee;
-
 padding:15px 0;
-
 }
 
 .review:last-child{
-
 border:none;
-
 }
 
 .stars{
-
 color:#ffb703;
-
 font-size:18px;
-
 }
 
 /* FORM */
 
 .order-form{
-
 margin-top:40px;
-
 background:white;
-
 padding:30px;
-
 border-radius:12px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.05);
-
 }
 
 .order-form h2{
-
 text-align:center;
 margin-bottom:20px;
-
 }
 
 form input, form textarea{
-
 width:100%;
-
 padding:12px;
-
 margin-bottom:15px;
-
 border:1px solid #ccc;
-
 border-radius:6px;
-
 }
 
 form button{
-
 width:100%;
-
 padding:15px;
-
 background:#ff4d4d;
-
 border:none;
-
 color:white;
-
 font-size:18px;
-
 border-radius:8px;
-
 cursor:pointer;
-
 }
-
-/* MOBILE */
 
 @media(max-width:768px){
-
 .product{
-
 grid-template-columns:1fr;
-
 }
-
 .features ul{
-
 grid-template-columns:1fr;
-
 }
-
 }
 
 </style>
@@ -287,7 +214,20 @@ grid-template-columns:1fr;
 
 <div>
 
-<img src="https://images.unsplash.com/photo-1604908176997-4310b5e1c3bb?auto=format&fit=crop&w=900&q=60">
+<img id="mainImage" class="main-img"
+src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=900&q=60">
+
+<div class="thumbs">
+
+<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=60" onclick="changeImage(this)">
+
+<img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=300&q=60" onclick="changeImage(this)">
+
+<img src="https://images.unsplash.com/photo-1604908176997-4310b5e1c3bb?auto=format&fit=crop&w=300&q=60" onclick="changeImage(this)">
+
+<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=300&q=60" onclick="changeImage(this)">
+
+</div>
 
 </div>
 
@@ -296,21 +236,15 @@ grid-template-columns:1fr;
 <div class="product-title">Smart Oil Brush Bottle</div>
 
 <div class="price">
-
-<span class="old-price">₹299</span> ₹149
-
+<span class="old">₹299</span> ₹149
 </div>
 
 <div class="timer">
-
 Offer Ends In: <span id="countdown"></span>
-
 </div>
 
 <p>
-
 Perfect kitchen oil brush bottle. Easily spread oil while cooking BBQ, chicken, salad or roti.
-
 </p>
 
 <a href="#order" class="order-btn">Order Now</a>
@@ -321,22 +255,15 @@ Perfect kitchen oil brush bottle. Easily spread oil while cooking BBQ, chicken, 
 
 <section class="features">
 
-<h2>Features</h2>
+<h2>Why Customers Love It</h2>
 
 <ul>
-
 <li>🍗 Perfect for BBQ & Cooking</li>
-
 <li>🥗 Best for Salad Dressing</li>
-
 <li>🧴 Leakproof Oil Bottle</li>
-
 <li>🧼 Easy to Clean</li>
-
 <li>🔥 Heat Resistant Brush</li>
-
 <li>⭐ Premium Kitchen Tool</li>
-
 </ul>
 
 </section>
@@ -346,33 +273,21 @@ Perfect kitchen oil brush bottle. Easily spread oil while cooking BBQ, chicken, 
 <h2 style="text-align:center;margin-bottom:20px;">Customer Reviews</h2>
 
 <div class="review">
-
 <strong>Rahul Sharma</strong>
-
 <div class="stars">★★★★★</div>
-
 <p>Very useful kitchen tool. Oil apply karna easy ho gaya.</p>
-
 </div>
 
 <div class="review">
-
 <strong>Anita Verma</strong>
-
 <div class="stars">★★★★★</div>
-
 <p>Cooking ke liye perfect hai. Quality bhi achi hai.</p>
-
 </div>
 
 <div class="review">
-
 <strong>Rohit Kumar</strong>
-
 <div class="stars">★★★★☆</div>
-
 <p>Worth the price. Delivery bhi fast aayi.</p>
-
 </div>
 
 </section>
@@ -401,6 +316,10 @@ Perfect kitchen oil brush bottle. Easily spread oil while cooking BBQ, chicken, 
 
 <script>
 
+function changeImage(img){
+document.getElementById("mainImage").src = img.src;
+}
+
 var countDownDate = new Date().getTime() + (6 * 60 * 60 * 1000);
 
 var x = setInterval(function(){
@@ -410,20 +329,15 @@ var now = new Date().getTime();
 var distance = countDownDate - now;
 
 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 document.getElementById("countdown").innerHTML =
 hours + "h " + minutes + "m " + seconds + "s ";
 
-if (distance < 0) {
-
+if(distance < 0){
 clearInterval(x);
-
-document.getElementById("countdown").innerHTML = "EXPIRED";
-
+document.getElementById("countdown").innerHTML="EXPIRED";
 }
 
 },1000);
