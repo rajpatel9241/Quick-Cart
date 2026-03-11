@@ -35,7 +35,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
 .product{
 display:flex;
 flex-wrap:wrap;
-gap:20px;
+gap:25px;
 }
 
 .gallery{
@@ -46,9 +46,9 @@ flex:1;
 flex:1;
 }
 
-.product img{
+.main-img{
 width:100%;
-max-height:320px;
+height:260px;
 object-fit:cover;
 border-radius:10px;
 }
@@ -60,9 +60,11 @@ margin-top:10px;
 }
 
 .thumbs img{
-width:80px;
-height:80px;
+width:65px;
+height:65px;
 object-fit:cover;
+border-radius:6px;
+cursor:pointer;
 }
 
 .price{
@@ -84,10 +86,6 @@ display:inline-block;
 padding:8px 12px;
 border-radius:6px;
 margin-top:10px;
-}
-
-.features{
-margin-top:20px;
 }
 
 .order-box{
@@ -157,6 +155,10 @@ color:#555;
 flex-direction:column;
 }
 
+.main-img{
+height:220px;
+}
+
 }
 
 </style>
@@ -172,15 +174,14 @@ flex-direction:column;
 
 <div class="gallery">
 
-<img src="oil1.jpg.jpeg">
+<img src="oil1.jpg.jpeg" class="main-img" id="mainImg">
 
 <div class="thumbs">
 
-<img src="oil2.jpg.jpeg">
-
-<img src="oil3.jpg.jpeg">
-
-<img src="oil4.jpg.jpeg">
+<img src="oil1.jpg.jpeg" onclick="changeImg(this)">
+<img src="oil2.jpg.jpeg" onclick="changeImg(this)">
+<img src="oil3.jpg.jpeg" onclick="changeImg(this)">
+<img src="oil4.jpg.jpeg" onclick="changeImg(this)">
 
 </div>
 
@@ -210,11 +211,8 @@ Offer Ends In: 2h 00m 00s
 <ul>
 
 <li>Leakproof Oil Bottle</li>
-
 <li>Heat Resistant Brush</li>
-
 <li>Perfect for BBQ & Cooking</li>
-
 <li>Easy to Clean</li>
 
 </ul>
@@ -268,39 +266,24 @@ Offer Ends In: 2h 00m 00s
 <option>Select State</option>
 
 <option>Andhra Pradesh</option>
-
+<option>Arunachal Pradesh</option>
 <option>Assam</option>
-
 <option>Bihar</option>
-
 <option>Chhattisgarh</option>
-
 <option>Delhi</option>
-
 <option>Gujarat</option>
-
 <option>Haryana</option>
-
+<option>Himachal Pradesh</option>
 <option>Jharkhand</option>
-
 <option>Karnataka</option>
-
 <option>Madhya Pradesh</option>
-
 <option>Maharashtra</option>
-
 <option>Odisha</option>
-
 <option>Punjab</option>
-
 <option>Rajasthan</option>
-
 <option>Tamil Nadu</option>
-
 <option>Telangana</option>
-
 <option>Uttar Pradesh</option>
-
 <option>West Bengal</option>
 
 </select>
@@ -320,33 +303,21 @@ Offer Ends In: 2h 00m 00s
 <h3>Customer Reviews</h3>
 
 <div class="review">
-
-⭐⭐⭐⭐⭐
-
-<b>Neha Sharma – Delhi</b>
-
+⭐⭐⭐⭐⭐  
+<b>Neha Sharma – Delhi</b>  
 <p>Bahut useful product hai. Cooking me oil control ho gaya.</p>
-
 </div>
 
 <div class="review">
-
-⭐⭐⭐⭐⭐
-
-<b>Ravi Kumar – Patna</b>
-
+⭐⭐⭐⭐⭐  
+<b>Ravi Kumar – Patna</b>  
 <p>Quality achhi hai aur delivery fast thi.</p>
-
 </div>
 
 <div class="review">
-
-⭐⭐⭐⭐⭐
-
-<b>Pooja Singh – Lucknow</b>
-
+⭐⭐⭐⭐⭐  
+<b>Pooja Singh – Lucknow</b>  
 <p>Kitchen me bahut helpful product hai.</p>
-
 </div>
 
 <div class="footer">
@@ -354,11 +325,8 @@ Offer Ends In: 2h 00m 00s
 <h3>About QuickCart</h3>
 
 <p>
-
 QuickCart ek trusted online store hai jahan aapko
-
 smart kitchen products milte hain.
-
 </p>
 
 <p>
@@ -378,24 +346,20 @@ smart kitchen products milte hain.
 
 <script>
 
+function changeImg(el){
+document.getElementById("mainImg").src=el.src;
+}
+
 function plus(){
-
 let q=document.getElementById("qty");
-
 q.value=parseInt(q.value)+1;
-
 }
 
 function minus(){
-
 let q=document.getElementById("qty");
-
 if(q.value>1){
-
 q.value=parseInt(q.value)-1;
-
 }
-
 }
 
 function pay(){
