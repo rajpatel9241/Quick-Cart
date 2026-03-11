@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>QuickCart | Smart Oil Brush Bottle</title>
+<title>QuickCart | Smart Oil Brush</title>
 
 <style>
 
-*{
+body{
+font-family: Arial;
+background:#f5f6fa;
 margin:0;
 padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#f5f5f5;
 }
 
 header{
@@ -24,117 +19,116 @@ text-align:center;
 font-size:32px;
 font-weight:bold;
 padding:20px;
-color:#ff7a00;
+color:#ff5a5a;
 }
 
 .container{
 max-width:1000px;
 margin:auto;
+background:white;
 padding:20px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 .product{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+display:flex;
+flex-wrap:wrap;
+gap:20px;
 }
 
-.main-img{
+.product img{
 width:100%;
 border-radius:10px;
 }
 
-.thumbs{
-display:flex;
-gap:10px;
-margin-top:10px;
+.gallery{
+flex:1;
 }
 
-.thumbs img{
-width:70px;
-border-radius:6px;
-cursor:pointer;
+.details{
+flex:1;
 }
 
 .price{
-font-size:26px;
-margin:10px 0;
+font-size:28px;
+color:#ff6a00;
+font-weight:bold;
 }
 
-.old{
+.cut{
 text-decoration:line-through;
 color:gray;
-}
-
-.new{
-color:#ff7a00;
-font-weight:bold;
+margin-right:10px;
 }
 
 .timer{
 background:#222;
 color:white;
-padding:8px 14px;
 display:inline-block;
+padding:8px 12px;
 border-radius:6px;
 margin-top:10px;
 }
 
-.badges{
-margin-top:10px;
-color:#28a745;
-font-weight:bold;
+.features{
+margin-top:20px;
 }
 
-.order{
-background:white;
-margin-top:25px;
+.features li{
+margin-bottom:6px;
+}
+
+.order-box{
+margin-top:30px;
 padding:20px;
+background:#fafafa;
 border-radius:10px;
 }
 
 input,select{
 width:100%;
 padding:10px;
-margin:8px 0;
+margin:6px 0;
 border-radius:6px;
 border:1px solid #ccc;
 }
 
-button{
-background:#ff7a00;
-color:white;
-border:none;
-padding:12px;
-border-radius:6px;
-cursor:pointer;
-font-size:16px;
-}
-
 .quantity{
 display:flex;
-gap:10px;
 align-items:center;
+gap:10px;
 }
 
 .quantity button{
-width:35px;
-height:35px;
+padding:6px 12px;
+font-size:18px;
 }
 
-.offer{
-border:1px solid #ddd;
-padding:10px;
+.btn{
+background:#ff6a00;
+color:white;
+padding:12px;
+border:none;
 border-radius:6px;
-margin:6px 0;
+cursor:pointer;
+width:100%;
+font-size:16px;
+margin-top:10px;
 }
 
 .review{
+background:#f7f7f7;
+padding:15px;
+border-radius:8px;
 margin-top:10px;
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#555;
+font-size:14px;
 }
 
 .popup{
@@ -142,16 +136,16 @@ position:fixed;
 bottom:20px;
 left:20px;
 background:white;
-padding:10px 15px;
+padding:12px 16px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
 border-radius:8px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
 display:none;
 }
 
 @media(max-width:768px){
 
 .product{
-grid-template-columns:1fr;
+flex-direction:column;
 }
 
 }
@@ -167,167 +161,232 @@ grid-template-columns:1fr;
 
 <div class="product">
 
-<div>
+<div class="gallery">
 
-<img id="mainImage" class="main-img" src="oil1.jpg.jpeg">
+<img src="oil1.jpg.jpeg">
 
-<div class="thumbs">
-
-<img src="oil1.jpg.jpeg" onclick="changeImage(this)">
-<img src="oil2.jpg.jpeg" onclick="changeImage(this)">
-<img src="oil3.jpg.jpeg" onclick="changeImage(this)">
-<img src="oil4.jpg.jpeg" onclick="changeImage(this)">
-
+<div style="display:flex;gap:10px;margin-top:10px">
+<img src="oil2.jpg.jpeg" width="80">
+<img src="oil3.jpg.jpeg" width="80">
+<img src="oil4.jpg.jpeg" width="80">
 </div>
 
 </div>
 
-<div>
+<div class="details">
 
 <h2>Smart Oil Brush Bottle</h2>
 
-<div class="price">
-<span class="old">₹299</span>
-<span class="new">₹149</span>
+<div>
+<span class="cut">₹299</span>
+<span class="price">₹149</span>
 </div>
 
-<div class="timer">
-Offer Ends In: <span id="countdown"></span>
+<div class="timer" id="timer">
+Offer Ends In: 2h 00m 00s
 </div>
 
-<div class="badges">
+<p style="color:green;margin-top:10px">
 🚚 Free Delivery Across India
-</div>
+</p>
 
-<div class="review">
+<p>
 ⭐⭐⭐⭐⭐ 4.8 Rating (1,200+ Customers)
-</div>
+</p>
+
+<ul class="features">
+<li>Leakproof Oil Bottle</li>
+<li>Heat Resistant Brush</li>
+<li>Perfect for BBQ & Cooking</li>
+<li>Easy to Clean</li>
+</ul>
 
 </div>
 
 </div>
 
-<div class="order">
+<div class="order-box">
 
 <h3>Place Your Order</h3>
 
-<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
-
 <label>Select Offer</label>
 
-<div class="offer">
-<input type="radio" name="Offer" value="1 Piece ₹149" checked>
-1 Piece - ₹149
-</div>
+<label>
+<input type="radio" name="offer" value="149" checked>
+1 Piece – <span class="cut">₹299</span> ₹149
+</label>
 
-<div class="offer">
-<input type="radio" name="Offer" value="2 Pieces ₹229">
-2 Pieces - ₹229 (₹500 cut)
-</div>
+<br>
+
+<label>
+<input type="radio" name="offer" value="229">
+2 Pieces – <span class="cut">₹500</span> ₹229
+</label>
+
+<br><br>
 
 <label>Quantity</label>
 
 <div class="quantity">
 
-<button type="button" onclick="decrease()">-</button>
+<button onclick="minus()">-</button>
 
-<input id="qty" name="Quantity" value="1">
+<input type="number" id="qty" value="1">
 
-<button type="button" onclick="increase()">+</button>
+<button onclick="plus()">+</button>
 
 </div>
 
-<input type="text" name="Name" placeholder="Full Name" required>
+<input placeholder="Full Name">
 
-<input type="tel" name="Phone" placeholder="Mobile Number" required>
+<input placeholder="Mobile Number">
 
-<input type="text" name="Street" placeholder="Street Address" required>
+<select>
 
-<input type="text" name="City" placeholder="City" required>
-
-<select name="State">
-
-<option>Andhra Pradesh</option>
+<option>Select State</option>
 <option>Bihar</option>
-<option>Delhi</option>
-<option>Gujarat</option>
 <option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Maharashtra</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Tamil Nadu</option>
 <option>Uttar Pradesh</option>
+<option>Delhi</option>
+<option>Maharashtra</option>
 <option>West Bengal</option>
+<option>Punjab</option>
 
 </select>
 
-<input type="text" name="Pincode" placeholder="Pin Code" required>
+<input placeholder="City">
 
-<button type="submit">Cash On Delivery</button>
+<input placeholder="Street Address">
 
-</form>
+<input placeholder="Pin Code">
 
-<br>
+<button class="btn" onclick="pay()">Pay Online (UPI)</button>
 
-<a href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am=149&cu=INR">
-<button>Pay Online (UPI)</button>
-</a>
+<button class="btn">Cash On Delivery</button>
+
+</div>
+
+<h3 style="margin-top:30px">Customer Reviews</h3>
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<b>Neha Sharma – Delhi</b>  
+<p>Bahut useful product hai. Oil control perfect ho gaya.</p>
+</div>
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<b>Ravi Kumar – Patna</b>  
+<p>Quality achhi hai aur delivery fast thi.</p>
+</div>
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<b>Pooja Singh – Lucknow</b>  
+<p>Kitchen me bahut helpful hai.</p>
+</div>
+
+<div class="footer">
+
+<h3>About QuickCart</h3>
+
+<p>
+QuickCart ek trusted online store hai jahan aapko
+smart kitchen products milte hain.
+</p>
+
+<p>
+✔ High Quality Products  
+✔ Fast Delivery Across India  
+✔ Cash on Delivery Available  
+✔ Secure Online Payment
+</p>
 
 </div>
 
 </div>
 
-<div class="popup" id="popup">
-🔥 Rahul from Delhi ordered 2 pieces
-</div>
+<div class="popup" id="popup"></div>
 
 <script>
 
-function changeImage(img){
-document.getElementById("mainImage").src = img.src;
+function plus(){
+
+let q=document.getElementById("qty");
+
+q.value=parseInt(q.value)+1;
+
 }
 
-function increase(){
-var qty=document.getElementById("qty");
-qty.value=parseInt(qty.value)+1;
+function minus(){
+
+let q=document.getElementById("qty");
+
+if(q.value>1){
+
+q.value=parseInt(q.value)-1;
+
 }
 
-function decrease(){
-var qty=document.getElementById("qty");
-if(qty.value>1){
-qty.value=parseInt(qty.value)-1;
-}
 }
 
-var countDownDate=new Date().getTime()+(2*60*60*1000);
+function pay(){
 
-setInterval(function(){
+let amount=149;
 
-var now=new Date().getTime();
+let offer=document.querySelector('input[name="offer"]:checked').value;
 
-var distance=countDownDate-now;
+if(offer==229) amount=229;
 
-var h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-var m=Math.floor((distance%(1000*60*60))/(1000*60));
-var s=Math.floor((distance%(1000*60))/1000);
+window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+amount+"&cu=INR";
 
-document.getElementById("countdown").innerHTML=
-h+"h "+m+"m "+s+"s";
+}
 
-},1000);
+let names=["Rahul","Neha","Amit","Pooja","Ravi","Sneha","Arjun","Karan"];
 
-setInterval(function(){
+let cities=["Delhi","Patna","Lucknow","Mumbai","Kolkata","Jaipur"];
 
-var popup=document.getElementById("popup");
+function popup(){
 
-popup.style.display="block";
+let name=names[Math.floor(Math.random()*names.length)];
 
-setTimeout(function(){
-popup.style.display="none";
+let city=cities[Math.floor(Math.random()*cities.length)];
+
+let qty=Math.random()>0.5?2:1;
+
+let pop=document.getElementById("popup");
+
+pop.innerHTML="🛒 "+name+" from "+city+" ordered "+qty+" piece";
+
+pop.style.display="block";
+
+setTimeout(()=>{
+
+pop.style.display="none";
+
 },4000);
 
-},15000);
+}
+
+setInterval(popup,10000);
+
+let time=7200;
+
+function countdown(){
+
+let h=Math.floor(time/3600);
+
+let m=Math.floor((time%3600)/60);
+
+let s=time%60;
+
+document.getElementById("timer").innerHTML="Offer Ends In: "+h+"h "+m+"m "+s+"s";
+
+time--;
+
+}
+
+setInterval(countdown,1000);
 
 </script>
 
