@@ -8,7 +8,7 @@
 
 body{
 font-family:Arial;
-background:#f5f6fa;
+background:linear-gradient(135deg,#eef3ff,#ffffff);
 margin:0;
 padding:0;
 }
@@ -18,7 +18,7 @@ text-align:center;
 font-size:32px;
 font-weight:bold;
 padding:20px;
-color:#ff5a5a;
+color:#1e73ff;
 }
 
 .container{
@@ -36,13 +36,8 @@ flex-wrap:wrap;
 gap:25px;
 }
 
-.gallery{
-flex:1;
-}
-
-.details{
-flex:1;
-}
+.gallery{flex:1;}
+.details{flex:1;}
 
 .main-img{
 width:100%;
@@ -86,6 +81,27 @@ border-radius:6px;
 margin-top:10px;
 }
 
+.badges{
+margin-top:10px;
+font-size:15px;
+}
+
+.stock{
+color:red;
+font-weight:bold;
+margin-top:10px;
+}
+
+.orders{
+color:#ff6a00;
+font-weight:bold;
+}
+
+.viewing{
+color:#333;
+font-weight:bold;
+}
+
 .order-box{
 margin-top:30px;
 padding:20px;
@@ -101,19 +117,8 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-.quantity{
-display:flex;
-gap:10px;
-align-items:center;
-}
-
-.quantity button{
-padding:6px 12px;
-font-size:18px;
-}
-
 .btn{
-background:#ff6a00;
+background:#1e73ff;
 color:white;
 padding:12px;
 border:none;
@@ -121,6 +126,7 @@ border-radius:6px;
 cursor:pointer;
 width:100%;
 margin-top:10px;
+font-size:16px;
 }
 
 .review{
@@ -141,36 +147,9 @@ box-shadow:0 5px 20px rgba(0,0,0,0.3);
 display:none;
 }
 
-.footer{
-margin-top:40px;
-text-align:center;
-color:#555;
-}
-
-.whatsapp-float{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-border-radius:50%;
-width:60px;
-height:60px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-text-decoration:none;
-}
-
 @media(max-width:768px){
-.product{
-flex-direction:column;
-}
-.main-img{
-height:220px;
-}
+.product{flex-direction:column;}
+.main-img{height:220px;}
 }
 
 </style>
@@ -210,20 +189,21 @@ height:220px;
 Offer Ends In: 2h 00m 00s
 </div>
 
-<p style="color:green">
-🚚 Free Delivery Across India
-</p>
+<p class="stock">⚠ Only 7 pieces left in stock</p>
+
+<p class="orders">🔥 <span id="orders">23</span> Orders Today</p>
+
+<p class="viewing">👀 <span id="viewers">12</span> people are viewing this product</p>
+
+<div class="badges">
+🔒 Secure Checkout <br>
+🚚 Free Delivery <br>
+💵 Cash on Delivery Available
+</div>
 
 <p>
 ⭐⭐⭐⭐⭐ 4.8 Rating (1,200+ Customers)
 </p>
-
-<ul>
-<li>Leakproof Oil Bottle</li>
-<li>Heat Resistant Brush</li>
-<li>Perfect for BBQ & Cooking</li>
-<li>Easy to Clean</li>
-</ul>
 
 </div>
 
@@ -233,65 +213,49 @@ Offer Ends In: 2h 00m 00s
 
 <h3>Place Your Order</h3>
 
-<label>
-<input type="radio" name="offer" value="149" checked>
-1 Piece – <span class="cut">₹299</span> ₹149
-</label>
+<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
 
-<br>
+<input type="text" name="Name" placeholder="Full Name" required>
 
-<label>
-<input type="radio" name="offer" value="229">
-2 Pieces – <span class="cut">₹500</span> ₹229
-</label>
+<input type="text" name="Phone" placeholder="Mobile Number" required>
 
-<br><br>
-
-<label>Quantity</label>
-
-<div class="quantity">
-<button onclick="minus()">-</button>
-<input type="number" id="qty" value="1">
-<button onclick="plus()">+</button>
-</div>
-
-<input placeholder="Full Name">
-<input placeholder="Mobile Number">
-
-<select>
-
-<option>Select State</option>
-
-<option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
+<select name="State" required>
+<option value="">Select State</option>
 <option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Delhi</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
+<option>Uttar Pradesh</option>
 <option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Madhya Pradesh</option>
+<option>Delhi</option>
 <option>Maharashtra</option>
-<option>Odisha</option>
-<option>Punjab</option>
+<option>Gujarat</option>
 <option>Rajasthan</option>
+<option>Punjab</option>
+<option>Haryana</option>
+<option>Madhya Pradesh</option>
+<option>West Bengal</option>
+<option>Odisha</option>
+<option>Karnataka</option>
 <option>Tamil Nadu</option>
 <option>Telangana</option>
-<option>Uttar Pradesh</option>
-<option>West Bengal</option>
-
+<option>Kerala</option>
+<option>Assam</option>
 </select>
 
-<input placeholder="City">
-<input placeholder="Street Address">
-<input placeholder="Pin Code">
+<input type="text" name="City" placeholder="City" required>
+<input type="text" name="Address" placeholder="Street Address" required>
+<input type="text" name="Pincode" placeholder="Pin Code" required>
 
-<button class="btn" onclick="pay()">Pay Online (UPI)</button>
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://rajpatel9241.github.io/Quick-Cart/thankyou.html">
 
-<button class="btn" onclick="sendWhatsApp()">Order on WhatsApp</button>
+<button type="submit" class="btn">
+Cash on Delivery
+</button>
+
+</form>
+
+<button class="btn" onclick="pay()">
+Pay Online (UPI)
+</button>
 
 </div>
 
@@ -315,31 +279,9 @@ Offer Ends In: 2h 00m 00s
 <p>Kitchen me bahut helpful product hai.</p>
 </div>
 
-<div class="footer">
-
-<h3>About QuickCart</h3>
-
-<p>
-QuickCart ek trusted online store hai jahan aapko
-smart kitchen products milte hain.
-</p>
-
-<p>
-✔ High Quality Products  
-✔ Fast Delivery Across India  
-✔ Cash On Delivery Available  
-✔ Secure Online Payment
-</p>
-
-</div>
-
 </div>
 
 <div class="popup" id="popup"></div>
-
-<a href="https://wa.me/917903086475?text=Hello%20I%20want%20to%20order%20Smart%20Oil%20Brush%20Bottle" class="whatsapp-float" target="_blank">
-💬
-</a>
 
 <script>
 
@@ -347,64 +289,38 @@ function changeImg(el){
 document.getElementById("mainImg").src=el.src;
 }
 
-function plus(){
-let q=document.getElementById("qty");
-q.value=parseInt(q.value)+1;
-}
-
-function minus(){
-let q=document.getElementById("qty");
-if(q.value>1){
-q.value=parseInt(q.value)-1;
-}
-}
-
 function pay(){
-
-let amount=149;
-let offer=document.querySelector('input[name="offer"]:checked').value;
-
-if(offer==229) amount=229;
-
-window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+amount+"&cu=INR";
-
+window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&cu=INR";
 }
 
-function sendWhatsApp(){
+let orders = 23;
+setInterval(()=>{
+orders++;
+document.getElementById("orders").innerHTML=orders;
+},15000);
 
-let qty=document.getElementById("qty").value;
-
-let offer=document.querySelector('input[name="offer"]:checked').value;
-
-let message="New Order%0A"+
-"Product: Smart Oil Brush Bottle%0A"+
-"Offer: "+offer+"%0A"+
-"Quantity: "+qty;
-
-window.open("https://wa.me/917903086475?text="+message);
-
-}
+let viewers = 12;
+setInterval(()=>{
+viewers = Math.floor(Math.random()*8)+8;
+document.getElementById("viewers").innerHTML=viewers;
+},5000);
 
 let names=["Rahul","Amit","Neha","Pooja","Ravi","Arjun","Karan","Sneha"];
-
 let cities=["Delhi","Patna","Lucknow","Mumbai","Jaipur","Kolkata"];
 
 function popup(){
-
 let name=names[Math.floor(Math.random()*names.length)];
 let city=cities[Math.floor(Math.random()*cities.length)];
-let qty=Math.random()>0.6?2:1;
 
 let pop=document.getElementById("popup");
 
-pop.innerHTML="🛒 "+name+" from "+city+" ordered "+qty+" piece";
+pop.innerHTML="🛒 "+name+" from "+city+" ordered 1 piece";
 
 pop.style.display="block";
 
 setTimeout(()=>{
 pop.style.display="none";
 },4000);
-
 }
 
 setInterval(popup,10000);
@@ -420,7 +336,6 @@ let s=time%60;
 document.getElementById("timer").innerHTML="Offer Ends In: "+h+"h "+m+"m "+s+"s";
 
 time--;
-
 }
 
 setInterval(countdown,1000);
