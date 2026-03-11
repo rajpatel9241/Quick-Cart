@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,10 +21,10 @@ background:#f5f5f5;
 
 header{
 text-align:center;
-font-size:30px;
+font-size:32px;
 font-weight:bold;
 padding:20px;
-color:#ff4d4d;
+color:#ff7a00;
 }
 
 .container{
@@ -37,11 +36,11 @@ padding:20px;
 .product{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:40px;
+gap:30px;
 background:white;
-padding:30px;
+padding:20px;
 border-radius:10px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .main-img{
@@ -57,8 +56,8 @@ margin-top:10px;
 
 .thumbs img{
 width:70px;
-cursor:pointer;
 border-radius:6px;
+cursor:pointer;
 }
 
 .price{
@@ -69,62 +68,95 @@ margin:10px 0;
 .old{
 text-decoration:line-through;
 color:gray;
-margin-right:10px;
 }
 
 .new{
-color:red;
+color:#ff7a00;
 font-weight:bold;
 }
 
-button{
-background:#ff4d4d;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:6px;
-cursor:pointer;
-}
-
 .timer{
-background:black;
+background:#222;
 color:white;
-padding:8px 12px;
+padding:8px 14px;
 display:inline-block;
 border-radius:6px;
 margin-top:10px;
 }
 
-.features, .reviews, .order{
+.badges{
+margin-top:10px;
+color:#28a745;
+font-weight:bold;
+}
+
+.order{
 background:white;
-margin-top:30px;
+margin-top:25px;
 padding:20px;
 border-radius:10px;
 }
 
-.review{
-background:#fafafa;
-padding:10px;
-margin-top:10px;
-border-radius:6px;
-}
-
-form input, form textarea{
+input,select{
 width:100%;
 padding:10px;
 margin:8px 0;
-border:1px solid #ccc;
 border-radius:6px;
+border:1px solid #ccc;
 }
 
-.payment-buttons{
+button{
+background:#ff7a00;
+color:white;
+border:none;
+padding:12px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+.quantity{
 display:flex;
 gap:10px;
+align-items:center;
+}
+
+.quantity button{
+width:35px;
+height:35px;
+}
+
+.offer{
+border:1px solid #ddd;
+padding:10px;
+border-radius:6px;
+margin:6px 0;
+}
+
+.review{
 margin-top:10px;
 }
 
-</style>
+.popup{
+position:fixed;
+bottom:20px;
+left:20px;
+background:white;
+padding:10px 15px;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+display:none;
+}
 
+@media(max-width:768px){
+
+.product{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
 </head>
 
 <body>
@@ -159,38 +191,19 @@ margin-top:10px;
 <span class="new">₹149</span>
 </div>
 
-<p>
-Perfect kitchen oil brush bottle. Easily spread oil while cooking BBQ, chicken, salad or roti.
-</p>
-
 <div class="timer">
 Offer Ends In: <span id="countdown"></span>
 </div>
 
+<div class="badges">
+🚚 Free Delivery Across India
+</div>
+
+<div class="review">
+⭐⭐⭐⭐⭐ 4.8 Rating (1,200+ Customers)
 </div>
 
 </div>
-
-<div class="features">
-
-<h3>Product Features</h3>
-
-<ul>
-<li>Leakproof Oil Bottle</li>
-<li>Heat Resistant Brush</li>
-<li>Perfect for BBQ & Cooking</li>
-<li>Easy to Clean</li>
-</ul>
-
-</div>
-
-<div class="reviews">
-
-<h3>Customer Reviews</h3>
-
-<div class="review">⭐⭐⭐⭐⭐ Rahul Sharma – Amazing product!</div>
-<div class="review">⭐⭐⭐⭐⭐ Anita Verma – Perfect for kitchen.</div>
-<div class="review">⭐⭐⭐⭐ Rohit Kumar – Good quality.</div>
 
 </div>
 
@@ -198,28 +211,75 @@ Offer Ends In: <span id="countdown"></span>
 
 <h3>Place Your Order</h3>
 
-<form action="https://formsubmit.co/rk92412838@gmail.com" method="POST">
+<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
 
-<input type="text" name="Name" placeholder="Your Name" required>
+<label>Select Offer</label>
 
-<input type="tel" name="Phone" placeholder="Phone Number" required>
+<div class="offer">
+<input type="radio" name="Offer" value="1 Piece ₹149" checked>
+1 Piece - ₹149
+</div>
 
-<textarea name="Address" placeholder="Full Address" required></textarea>
+<div class="offer">
+<input type="radio" name="Offer" value="2 Pieces ₹229">
+2 Pieces - ₹229 (₹500 cut)
+</div>
+
+<label>Quantity</label>
+
+<div class="quantity">
+
+<button type="button" onclick="decrease()">-</button>
+
+<input id="qty" name="Quantity" value="1">
+
+<button type="button" onclick="increase()">+</button>
+
+</div>
+
+<input type="text" name="Name" placeholder="Full Name" required>
+
+<input type="tel" name="Phone" placeholder="Mobile Number" required>
+
+<input type="text" name="Street" placeholder="Street Address" required>
+
+<input type="text" name="City" placeholder="City" required>
+
+<select name="State">
+
+<option>Andhra Pradesh</option>
+<option>Bihar</option>
+<option>Delhi</option>
+<option>Gujarat</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Maharashtra</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Tamil Nadu</option>
+<option>Uttar Pradesh</option>
+<option>West Bengal</option>
+
+</select>
+
+<input type="text" name="Pincode" placeholder="Pin Code" required>
 
 <button type="submit">Cash On Delivery</button>
 
 </form>
 
-<div class="payment-buttons">
+<br>
 
 <a href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am=149&cu=INR">
-<button>Pay ₹149 Online</button>
+<button>Pay Online (UPI)</button>
 </a>
 
 </div>
 
 </div>
 
+<div class="popup" id="popup">
+🔥 Rahul from Delhi ordered 2 pieces
 </div>
 
 <script>
@@ -228,27 +288,46 @@ function changeImage(img){
 document.getElementById("mainImage").src = img.src;
 }
 
-var countDownDate = new Date().getTime() + (2 * 60 * 60 * 1000);
-
-var x = setInterval(function(){
-
-var now = new Date().getTime();
-
-var distance = countDownDate - now;
-
-var hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
-var seconds = Math.floor((distance % (1000*60))/1000);
-
-document.getElementById("countdown").innerHTML =
-hours+"h "+minutes+"m "+seconds+"s";
-
-if(distance < 0){
-clearInterval(x);
-document.getElementById("countdown").innerHTML="EXPIRED";
+function increase(){
+var qty=document.getElementById("qty");
+qty.value=parseInt(qty.value)+1;
 }
 
+function decrease(){
+var qty=document.getElementById("qty");
+if(qty.value>1){
+qty.value=parseInt(qty.value)-1;
+}
+}
+
+var countDownDate=new Date().getTime()+(2*60*60*1000);
+
+setInterval(function(){
+
+var now=new Date().getTime();
+
+var distance=countDownDate-now;
+
+var h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var m=Math.floor((distance%(1000*60*60))/(1000*60));
+var s=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+h+"h "+m+"m "+s+"s";
+
 },1000);
+
+setInterval(function(){
+
+var popup=document.getElementById("popup");
+
+popup.style.display="block";
+
+setTimeout(function(){
+popup.style.display="none";
+},4000);
+
+},15000);
 
 </script>
 
