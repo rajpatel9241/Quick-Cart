@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>QuickCart | Smart Oil Brush Bottle</title>
 
 <style>
@@ -149,16 +147,30 @@ text-align:center;
 color:#555;
 }
 
-@media(max-width:768px){
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+border-radius:50%;
+width:60px;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+text-decoration:none;
+}
 
+@media(max-width:768px){
 .product{
 flex-direction:column;
 }
-
 .main-img{
 height:220px;
 }
-
 }
 
 </style>
@@ -177,12 +189,10 @@ height:220px;
 <img src="oil1.jpg.jpeg" class="main-img" id="mainImg">
 
 <div class="thumbs">
-
 <img src="oil1.jpg.jpeg" onclick="changeImg(this)">
 <img src="oil2.jpg.jpeg" onclick="changeImg(this)">
 <img src="oil3.jpg.jpeg" onclick="changeImg(this)">
 <img src="oil4.jpg.jpeg" onclick="changeImg(this)">
-
 </div>
 
 </div>
@@ -209,12 +219,10 @@ Offer Ends In: 2h 00m 00s
 </p>
 
 <ul>
-
 <li>Leakproof Oil Bottle</li>
 <li>Heat Resistant Brush</li>
 <li>Perfect for BBQ & Cooking</li>
 <li>Easy to Clean</li>
-
 </ul>
 
 </div>
@@ -226,21 +234,15 @@ Offer Ends In: 2h 00m 00s
 <h3>Place Your Order</h3>
 
 <label>
-
 <input type="radio" name="offer" value="149" checked>
-
 1 Piece – <span class="cut">₹299</span> ₹149
-
 </label>
 
 <br>
 
 <label>
-
 <input type="radio" name="offer" value="229">
-
 2 Pieces – <span class="cut">₹500</span> ₹229
-
 </label>
 
 <br><br>
@@ -248,17 +250,12 @@ Offer Ends In: 2h 00m 00s
 <label>Quantity</label>
 
 <div class="quantity">
-
 <button onclick="minus()">-</button>
-
 <input type="number" id="qty" value="1">
-
 <button onclick="plus()">+</button>
-
 </div>
 
 <input placeholder="Full Name">
-
 <input placeholder="Mobile Number">
 
 <select>
@@ -289,14 +286,12 @@ Offer Ends In: 2h 00m 00s
 </select>
 
 <input placeholder="City">
-
 <input placeholder="Street Address">
-
 <input placeholder="Pin Code">
 
 <button class="btn" onclick="pay()">Pay Online (UPI)</button>
 
-<button class="btn">Cash On Delivery</button>
+<button class="btn" onclick="sendWhatsApp()">Order on WhatsApp</button>
 
 </div>
 
@@ -330,12 +325,10 @@ smart kitchen products milte hain.
 </p>
 
 <p>
-
 ✔ High Quality Products  
 ✔ Fast Delivery Across India  
 ✔ Cash On Delivery Available  
-✔ Secure Online Payment  
-
+✔ Secure Online Payment
 </p>
 
 </div>
@@ -343,6 +336,10 @@ smart kitchen products milte hain.
 </div>
 
 <div class="popup" id="popup"></div>
+
+<a href="https://wa.me/917903086475?text=Hello%20I%20want%20to%20order%20Smart%20Oil%20Brush%20Bottle" class="whatsapp-float" target="_blank">
+💬
+</a>
 
 <script>
 
@@ -365,12 +362,26 @@ q.value=parseInt(q.value)-1;
 function pay(){
 
 let amount=149;
-
 let offer=document.querySelector('input[name="offer"]:checked').value;
 
 if(offer==229) amount=229;
 
 window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+amount+"&cu=INR";
+
+}
+
+function sendWhatsApp(){
+
+let qty=document.getElementById("qty").value;
+
+let offer=document.querySelector('input[name="offer"]:checked').value;
+
+let message="New Order%0A"+
+"Product: Smart Oil Brush Bottle%0A"+
+"Offer: "+offer+"%0A"+
+"Quantity: "+qty;
+
+window.open("https://wa.me/917903086475?text="+message);
 
 }
 
@@ -381,9 +392,7 @@ let cities=["Delhi","Patna","Lucknow","Mumbai","Jaipur","Kolkata"];
 function popup(){
 
 let name=names[Math.floor(Math.random()*names.length)];
-
 let city=cities[Math.floor(Math.random()*cities.length)];
-
 let qty=Math.random()>0.6?2:1;
 
 let pop=document.getElementById("popup");
@@ -393,9 +402,7 @@ pop.innerHTML="🛒 "+name+" from "+city+" ordered "+qty+" piece";
 pop.style.display="block";
 
 setTimeout(()=>{
-
 pop.style.display="none";
-
 },4000);
 
 }
@@ -407,9 +414,7 @@ let time=7200;
 function countdown(){
 
 let h=Math.floor(time/3600);
-
 let m=Math.floor((time%3600)/60);
-
 let s=time%60;
 
 document.getElementById("timer").innerHTML="Offer Ends In: "+h+"h "+m+"m "+s+"s";
