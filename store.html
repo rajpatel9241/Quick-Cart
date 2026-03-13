@@ -4,7 +4,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickCart Store</title>
+<title>QuickCart</title>
 
 <style>
 
@@ -25,15 +25,17 @@ align-items:center;
 
 .logo{
 font-size:24px;
-font-weight:bold;
 }
 
-.quick{
-color:white;
-}
+.quick{color:white;}
+.cart{color:#2b7cff;}
 
-.cart{
-color:#2b7cff;
+.timer{
+background:#ff3c3c;
+padding:5px 10px;
+border-radius:6px;
+margin-left:10px;
+font-size:14px;
 }
 
 .container{
@@ -42,7 +44,7 @@ padding:20px;
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 gap:20px;
 }
 
@@ -50,29 +52,42 @@ gap:20px;
 background:white;
 padding:10px;
 border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
 text-align:center;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
 .product img{
 width:100%;
+height:160px;
+object-fit:cover;
 border-radius:8px;
+cursor:pointer;
 }
+
+.price{color:red;}
 
 .old{
 text-decoration:line-through;
 color:gray;
-}
-
-.price{
-color:red;
-font-size:18px;
-}
-
-.stock{
-color:red;
 font-size:12px;
-margin-bottom:5px;
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:none;
+padding:20px;
+overflow:auto;
+}
+
+.thumbs img{
+width:60px;
+margin:5px;
+cursor:pointer;
 }
 
 button{
@@ -80,41 +95,20 @@ background:#2b7cff;
 border:none;
 color:white;
 padding:10px;
-border-radius:6px;
-cursor:pointer;
-width:100%;
 margin-top:5px;
-}
-
-#cartDrawer{
-position:fixed;
-right:-320px;
-top:0;
-width:300px;
-height:100%;
-background:white;
-box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-padding:20px;
-transition:0.3s;
-overflow:auto;
-}
-
-input,select{
+border-radius:5px;
 width:100%;
-padding:10px;
-margin:5px 0;
 }
 
-.popup{
+.spin{
 position:fixed;
-bottom:20px;
-left:20px;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 background:white;
-padding:10px 15px;
-border-radius:6px;
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
+padding:20px;
 display:none;
-font-size:13px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
 
 </style>
@@ -128,13 +122,17 @@ font-size:13px;
 <div class="logo">
 <span class="quick">Quick</span>
 <span class="cart">Cart</span>
+
+<span class="timer" id="timer"></span>
+
 </div>
 
-<div onclick="toggleCart()" style="cursor:pointer">
-🛒 Cart (<span id="cartCount">0</span>)
+<div>
+Coins: <span id="coins">0</span>
 </div>
 
 </header>
+
 
 <div class="container">
 
@@ -143,35 +141,27 @@ font-size:13px;
 <div class="products">
 
 <div class="product">
-<img src="oil1.jpg">
+<img src="chopper1.jpg" onclick="openProduct('chopper')">
 <div class="old">₹399</div>
 <div class="price">₹199</div>
-<div class="stock"></div>
-<button onclick="addToCart('Oil Dispenser',199)">Add to Cart</button>
 </div>
 
 <div class="product">
-<img src="chopper1.jpg">
+<img src="oil1.jpg" onclick="openProduct('oil')">
 <div class="old">₹399</div>
 <div class="price">₹199</div>
-<div class="stock"></div>
-<button onclick="addToCart('Vegetable Chopper',199)">Add to Cart</button>
 </div>
 
 <div class="product">
-<img src="faucet1.jpg">
+<img src="faucet1.jpg" onclick="openProduct('faucet')">
 <div class="old">₹299</div>
 <div class="price">₹169</div>
-<div class="stock"></div>
-<button onclick="addToCart('Faucet Filter',169)">Add to Cart</button>
 </div>
 
 <div class="product">
-<img src="shoap1.jpg">
+<img src="shoap1.jpg" onclick="openProduct('soap')">
 <div class="old">₹499</div>
 <div class="price">₹249</div>
-<div class="stock"></div>
-<button onclick="addToCart('Soap Dispenser',249)">Add to Cart</button>
 </div>
 
 </div>
@@ -182,35 +172,27 @@ font-size:13px;
 <div class="products">
 
 <div class="product">
-<img src="shord1.jpg">
+<img src="gun1.jpg" onclick="openProduct('gun')">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+</div>
+
+<div class="product">
+<img src="gear1.jpg" onclick="openProduct('gear')">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+</div>
+
+<div class="product">
+<img src="shord1.jpg" onclick="openProduct('sword')">
 <div class="old">₹399</div>
 <div class="price">₹199</div>
-<div class="stock"></div>
-<button onclick="addToCart('Sword Keychain',199)">Add to Cart</button>
 </div>
 
 <div class="product">
-<img src="gun1.jpg">
-<div class="old">₹449</div>
-<div class="price">₹229</div>
-<div class="stock"></div>
-<button onclick="addToCart('Gun Keychain',229)">Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="gear1.jpg">
-<div class="old">₹449</div>
-<div class="price">₹229</div>
-<div class="stock"></div>
-<button onclick="addToCart('Gear Keychain',229)">Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="dumble1.jpg">
+<img src="dumble1.jpg" onclick="openProduct('dumb')">
 <div class="old">₹449</div>
 <div class="price">₹199</div>
-<div class="stock"></div>
-<button onclick="addToCart('Dumbbell Keychain',199)">Add to Cart</button>
 </div>
 
 </div>
@@ -218,157 +200,130 @@ font-size:13px;
 </div>
 
 
-<div id="cartDrawer">
+<div class="popup" id="productPopup">
 
-<h2>Your Cart</h2>
+<img id="mainImg" style="width:100%;max-width:350px">
 
-<div id="cartItems"></div>
+<div class="thumbs" id="thumbs"></div>
 
-<h3 id="cartTotal"></h3>
-
-<button onclick="openOrder()">Checkout</button>
-
-<div id="orderForm" style="display:none">
-
-<h3>Place Order</h3>
-
-<input id="name" placeholder="Full Name">
-
-<input id="phone" placeholder="Phone Number">
-
-<input id="street" placeholder="Street Address">
-
-<input id="city" placeholder="City">
-
-<select id="state">
-
-<option>Select State</option>
-<option>Bihar</option>
-<option>Uttar Pradesh</option>
-<option>Delhi</option>
-<option>Maharashtra</option>
-<option>Gujarat</option>
-<option>Rajasthan</option>
-<option>Punjab</option>
-<option>Haryana</option>
-<option>Madhya Pradesh</option>
-<option>West Bengal</option>
-<option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Tamil Nadu</option>
-<option>Kerala</option>
-
-</select>
-
-<input id="pincode" placeholder="Pincode">
-
-<button onclick="payUPI()">Pay Online (UPI)</button>
-
-<button onclick="cashOrder()">Cash on Delivery</button>
+<button onclick="checkout()">Order Now</button>
+<button onclick="addCoins()">Add to Cart</button>
+<button onclick="closeProduct()">Close</button>
 
 </div>
 
+
+<div class="spin" id="spin">
+
+<h3>Spin & Win</h3>
+
+<button onclick="spin()">Spin</button>
+
+<p id="spinResult"></p>
+
 </div>
 
-<div class="popup" id="orderPopup"></div>
 
 <script>
 
-let cart=[]
-let total=0
+let coins=0
 
-function toggleCart(){
+let products={
 
-let cartDrawer=document.getElementById("cartDrawer")
+chopper:["chopper1.jpg","chopper2.jpg","chopper3.jpg","chopper4.jpg"],
+oil:["oil1.jpg","oil2.jpg","oil3.jpg","oil4.jpg"],
+faucet:["faucet1.jpg","faucet2.jpg","faucet3.jpg","faucet4.jpg"],
+soap:["shoap1.jpg","shoap2.jpg","shoap3.jpg","shoap4.jpg"],
 
-if(cartDrawer.style.right=="0px"){
-cartDrawer.style.right="-320px"
-}else{
-cartDrawer.style.right="0px"
-}
-
-}
-
-function addToCart(product,price){
-
-cart.push(product)
-
-total+=price
-
-document.getElementById("cartCount").innerText=cart.length
-
-document.getElementById("cartItems").innerHTML+=product+" - ₹"+price+"<br>"
-
-document.getElementById("cartTotal").innerText="Total ₹"+total
+gun:["gun1.jpg","gun2.jpg","gun3.jpg"],
+gear:["gear1.jpg","gear2.jpg","gear3.jpg"],
+sword:["shord1.jpg","shord2.jpg","shord3.jpg"],
+dumb:["dumble1.jpg","dumble2.jpg","dumble3.jpg"]
 
 }
 
-function openOrder(){
+function openProduct(name){
 
-document.getElementById("orderForm").style.display="block"
+let images=products[name]
 
-}
+document.getElementById("productPopup").style.display="block"
 
-function payUPI(){
+document.getElementById("mainImg").src=images[0]
 
-window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&cu=INR"
+let thumbs=""
 
-}
+images.forEach(function(i){
 
-function cashOrder(){
-
-let name=document.getElementById("name").value
-let phone=document.getElementById("phone").value
-let city=document.getElementById("city").value
-
-window.location.href="mailto:rounakpatel0723@gmail.com?subject=QuickCart Order&body=Name:"+name+" Phone:"+phone+" City:"+city
-
-}
-
-
-function randomStock(){
-
-let stocks=document.querySelectorAll(".stock")
-
-stocks.forEach(function(item){
-
-let num=Math.floor(Math.random()*5)+3
-
-item.innerText=num+" pieces left"
+thumbs+=<img src="${i}" onclick="changeImg('${i}')">
 
 })
 
-}
-
-randomStock()
-
-
-let names=["Rahul","Amit","Neha","Pooja","Ravi","Arjun","Karan"]
-let cities=["Delhi","Patna","Jaipur","Mumbai","Lucknow"]
-
-function fakeOrder(){
-
-let name=names[Math.floor(Math.random()*names.length)]
-let city=cities[Math.floor(Math.random()*cities.length)]
-
-let popup=document.getElementById("orderPopup")
-
-popup.innerText=name+" from "+city+" ordered a product"
-
-popup.style.display="block"
-
-setTimeout(()=>{
-
-popup.style.display="none"
-
-},4000)
+document.getElementById("thumbs").innerHTML=thumbs
 
 }
 
-setInterval(fakeOrder,10000)
+function changeImg(src){
+
+document.getElementById("mainImg").src=src
+
+}
+
+function closeProduct(){
+
+document.getElementById("productPopup").style.display="none"
+
+}
+
+function checkout(){
+
+window.location.href="thankyou.html"
+
+}
+
+function addCoins(){
+
+coins+=10
+
+document.getElementById("coins").innerText=coins
+
+}
+
+setTimeout(function(){
+
+document.getElementById("spin").style.display="block"
+
+},5000)
+
+function spin(){
+
+let options=[15,20,25]
+
+let result=options[Math.floor(Math.random()*options.length)]
+
+document.getElementById("spinResult").innerText="You won "+result+"% discount"
+
+}
+
+
+let time=4*60*60+36*60
+
+function countdown(){
+
+let h=Math.floor(time/3600)
+
+let m=Math.floor((time%3600)/60)
+
+let s=time%60
+
+document.getElementById("timer").innerText=h+"h "+m+"m "+s+"s"
+
+time--
+
+}
+
+setInterval(countdown,1000)
 
 </script>
 
 </body>
-
 </html>
