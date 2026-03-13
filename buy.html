@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuickCart Checkout</title>
+
+<title>Checkout - QuickCart</title>
 
 <style>
 
 body{
 font-family:Arial;
-background:#f5efe6;
+background:#f6f6f6;
 margin:0;
+padding:20px;
 }
 
-.container{
-max-width:500px;
-margin:auto;
+.box{
 background:white;
-padding:20px;
-margin-top:20px;
+padding:25px;
 border-radius:10px;
+max-width:600px;
+margin:auto;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+margin-top:0;
 }
 
 .product{
 display:flex;
 gap:10px;
-margin-bottom:15px;
-align-items:center;
+margin-bottom:10px;
 }
 
 .product img{
 width:60px;
+height:60px;
+object-fit:contain;
 }
 
-.price{
-color:red;
+.total{
+font-size:20px;
 font-weight:bold;
+margin:15px 0;
 }
 
 input,select{
@@ -46,83 +53,86 @@ border:1px solid #ccc;
 border-radius:5px;
 }
 
-.qty{
-display:flex;
-gap:5px;
-margin-top:5px;
-}
-
-.qty button{
-width:30px;
-height:30px;
-}
-
-.total{
-font-weight:bold;
-margin-top:15px;
-}
-
-button.order{
+button{
 width:100%;
 padding:12px;
+margin-top:15px;
 background:#2b7cff;
 color:white;
 border:none;
 border-radius:6px;
-margin-top:15px;
+font-size:16px;
 cursor:pointer;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
 <h2>Your Order</h2>
 
-<div id="cartItems"></div>
+<div id="productList"></div>
 
 <div class="total">
 Total ₹ <span id="totalPrice">0</span>
 </div>
 
-<h3>Delivery Details</h3>
+<h2>Delivery Details</h2>
 
-<input placeholder="Full Name" required>
+<form id="orderForm">
 
-<input placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
+<input type="text" id="name" placeholder="Full Name" required>
 
-<input placeholder="Street Address">
+<input type="tel" id="phone" placeholder="Mobile Number (10 digits)" required pattern="[0-9]{10}">
 
-<input placeholder="Pincode (6 digits)" pattern="[0-9]{6}">
+<input type="text" id="address" placeholder="Street Address" required>
 
-<select>
+<input type="text" id="pincode" placeholder="Pincode (6 digits)" required pattern="[0-9]{6}">
 
-<option>Select State</option>
+<select id="state" required>
+
+<option value="">Select State</option>
+
 <option>Bihar</option>
-<option>Delhi</option>
 <option>Uttar Pradesh</option>
+<option>Delhi</option>
 <option>Maharashtra</option>
 <option>Gujarat</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Haryana</option>
+<option>Madhya Pradesh</option>
+<option>West Bengal</option>
+<option>Odisha</option>
+<option>Jharkhand</option>
+<option>Chhattisgarh</option>
+<option>Assam</option>
+<option>Kerala</option>
+<option>Tamil Nadu</option>
+<option>Karnataka</option>
+<option>Telangana</option>
+<option>Andhra Pradesh</option>
+<option>Himachal Pradesh</option>
+<option>Uttarakhand</option>
 
 </select>
 
-<select id="payment">
+<select id="payment" required>
 
 <option value="">Select Payment</option>
 <option value="cod">Cash on Delivery</option>
-<option value="upi">Online Payment (UPI)</option>
+<option value="upi">Online UPI</option>
 
 </select>
 
-<button class="order" onclick="checkout()">
-
+<button type="submit">
 Confirm Order
-
 </button>
+
+</form>
 
 </div>
 
@@ -130,55 +140,59 @@ Confirm Order
 
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-let container = document.getElementById("cartItems")
-
+let list = document.getElementById("productList")
 let total = 0
 
-cart.forEach((p,i)=>{
+cart.forEach(p=>{
 
-let div=document.createElement("div")
-
-div.className="product"
-
-div.innerHTML=`
-
+list.innerHTML += `
+<div class="product">
 <img src="${p.img}">
-
 <div>
-
-<div>${p.name}</div>
-
-<div class="price">₹${p.price}</div>
-
+<b>${p.name}</b><br>
+₹${p.price}
 </div>
-
+</div>
 `
 
-container.appendChild(div)
-
-total += p.price
+total += Number(p.price)
 
 })
 
 document.getElementById("totalPrice").innerText = total
 
-function checkout(){
+document.getElementById("orderForm").onsubmit=function(e){
 
-let payment=document.getElementById("payment").value
+e.preventDefault()
 
-if(payment=="upi"){
+let name=document.getElementById("name").value
+let phone=document.getElementById("phone").value
+let pin=document.getElementById("pincode").value
+let pay=document.getElementById("payment").value
 
-let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
+if(phone.length!=10){
+alert("Enter valid 10 digit number")
+return
+}
 
-window.location.href=upi
+if(pin.length!=6){
+alert("Enter valid pincode")
+return
+}
 
-setTimeout(()=>{
+if(pay=="upi"){
 
-window.location.href="thankyou.html"
+let upi="rk86319625-1@oksbi"
 
-},4000)
+let link=`upi://pay?pa=${upi}&pn=QuickCart&am=${total}&cu=INR`
 
-}else{
+window.location.href=link
+
+}
+
+else{
+
+alert("Order Confirmed")
 
 window.location.href="thankyou.html"
 
