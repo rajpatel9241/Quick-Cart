@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Checkout - QuickCart</title>
 
 <style>
@@ -18,19 +18,16 @@ padding:20px;
 background:white;
 padding:25px;
 border-radius:10px;
-max-width:600px;
+max-width:650px;
 margin:auto;
 box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
-h2{
-margin-top:0;
-}
-
 .product{
 display:flex;
+align-items:center;
 gap:10px;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .product img{
@@ -39,10 +36,26 @@ height:60px;
 object-fit:contain;
 }
 
+.qty{
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+.qty button{
+padding:4px 10px;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+font-size:14px;
+}
+
 .total{
 font-size:20px;
 font-weight:bold;
-margin:15px 0;
+margin:20px 0;
 }
 
 input,select{
@@ -53,7 +66,7 @@ border:1px solid #ccc;
 border-radius:5px;
 }
 
-button{
+button.submit{
 width:100%;
 padding:12px;
 margin-top:15px;
@@ -66,6 +79,7 @@ cursor:pointer;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -77,22 +91,25 @@ cursor:pointer;
 <div id="productList"></div>
 
 <div class="total">
-Total ₹ <span id="totalPrice">0</span>
+Total ₹ <span id="total">0</span>
 </div>
 
 <h2>Delivery Details</h2>
 
-<form id="orderForm">
+<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
 
-<input type="text" id="name" placeholder="Full Name" required>
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="thankyou.html">
 
-<input type="tel" id="phone" placeholder="Mobile Number (10 digits)" required pattern="[0-9]{10}">
+<input type="text" name="Full Name" placeholder="Full Name" required>
 
-<input type="text" id="address" placeholder="Street Address" required>
+<input type="tel" name="Mobile Number" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
 
-<input type="text" id="pincode" placeholder="Pincode (6 digits)" required pattern="[0-9]{6}">
+<input type="text" name="Street Address" placeholder="Street Address" required>
 
-<select id="state" required>
+<input type="text" name="Pincode" placeholder="Pincode (6 digits)" pattern="[0-9]{6}" required>
+
+<select name="State" required>
 
 <option value="">Select State</option>
 
@@ -120,15 +137,15 @@ Total ₹ <span id="totalPrice">0</span>
 
 </select>
 
-<select id="payment" required>
+<select name="Payment Method" required>
 
 <option value="">Select Payment</option>
-<option value="cod">Cash on Delivery</option>
-<option value="upi">Online UPI</option>
+<option>Cash on Delivery</option>
+<option>Online UPI</option>
 
 </select>
 
-<button type="submit">
+<button class="submit" type="submit">
 Confirm Order
 </button>
 
@@ -141,64 +158,94 @@ Confirm Order
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
 let list = document.getElementById("productList")
-let total = 0
 
-cart.forEach(p=>{
+function render(){
+
+list.innerHTML=""
+
+let total=0
+
+cart.forEach((p,index)=>{
+
+if(!p.qty) p.qty=1
+
+total += p.price * p.qty
 
 list.innerHTML += `
-<div class="product">
-<img src="${p.img}">
-<div>
-<b>${p.name}</b><br>
-₹${p.price}
-</div>
-</div>
-`
 
-total += Number(p.price)
+<div class="product">
+
+<img src="${p.img}">
+
+<div>
+
+<b>${p.name}</b><br>
+
+₹${p.price}
+
+<div class="qty">
+
+<button onclick="minus(${index})">-</button>
+
+<span>${p.qty}</span>
+
+<button onclick="plus(${index})">+</button>
+
+</div>
+
+<div class="remove" onclick="removeItem(${index})">
+Remove
+</div>
+
+</div>
+
+</div>
+
+`
 
 })
 
-document.getElementById("totalPrice").innerText = total
-
-document.getElementById("orderForm").onsubmit=function(e){
-
-e.preventDefault()
-
-let name=document.getElementById("name").value
-let phone=document.getElementById("phone").value
-let pin=document.getElementById("pincode").value
-let pay=document.getElementById("payment").value
-
-if(phone.length!=10){
-alert("Enter valid 10 digit number")
-return
-}
-
-if(pin.length!=6){
-alert("Enter valid pincode")
-return
-}
-
-if(pay=="upi"){
-
-let upi="rk86319625-1@oksbi"
-
-let link=`upi://pay?pa=${upi}&pn=QuickCart&am=${total}&cu=INR`
-
-window.location.href=link
+document.getElementById("total").innerText=total
 
 }
 
-else{
+function plus(i){
 
-alert("Order Confirmed")
+cart[i].qty++
 
-window.location.href="thankyou.html"
+save()
+
+}
+
+function minus(i){
+
+if(cart[i].qty>1){
+
+cart[i].qty--
+
+save()
 
 }
 
 }
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+save()
+
+}
+
+function save(){
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+render()
+
+}
+
+render()
 
 </script>
 
