@@ -12,7 +12,7 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f6f1e9;
+background:#f5efe6;
 }
 
 header{
@@ -29,21 +29,16 @@ font-size:26px;
 font-weight:bold;
 }
 
-.quick{
-color:white;
-}
-
-.cart{
-color:#2b7cff;
-}
+.quick{color:white;}
+.cart{color:#2b7cff;}
 
 .timer{
-color:#ff4d4d;
+color:#ff4444;
 font-size:14px;
 }
 
 .container{
-padding:25px;
+padding:20px;
 }
 
 .grid{
@@ -79,7 +74,7 @@ font-size:14px;
 }
 
 .left{
-color:#ff4d4d;
+color:#ff4444;
 font-size:13px;
 }
 
@@ -100,7 +95,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.6);
 display:none;
 justify-content:center;
 align-items:center;
@@ -110,7 +105,7 @@ align-items:center;
 background:white;
 padding:20px;
 border-radius:10px;
-width:300px;
+width:320px;
 }
 
 input,select{
@@ -118,6 +113,13 @@ width:100%;
 padding:8px;
 margin-top:6px;
 margin-bottom:10px;
+}
+
+.policy{
+background:white;
+margin-top:30px;
+padding:20px;
+border-radius:10px;
 }
 
 </style>
@@ -150,7 +152,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹399</div>
 <div class="price">₹199</div>
 <div class="left" id="l1"></div>
-<button class="btn" onclick="order('Chopper')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 <div class="card">
@@ -158,7 +160,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹299</div>
 <div class="price">₹169</div>
 <div class="left" id="l2"></div>
-<button class="btn" onclick="order('Faucet')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 <div class="card">
@@ -166,7 +168,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹499</div>
 <div class="price">₹249</div>
 <div class="left" id="l3"></div>
-<button class="btn" onclick="order('Soap Dispenser')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 </div>
@@ -180,7 +182,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹399</div>
 <div class="price">₹199</div>
 <div class="left" id="l4"></div>
-<button class="btn" onclick="order('Sword Keychain')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 <div class="card">
@@ -188,7 +190,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹449</div>
 <div class="price">₹229</div>
 <div class="left" id="l5"></div>
-<button class="btn" onclick="order('Gun Keychain')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 <div class="card">
@@ -196,7 +198,7 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹449</div>
 <div class="price">₹229</div>
 <div class="left" id="l6"></div>
-<button class="btn" onclick="order('Gear Keychain')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
 
 <div class="card">
@@ -204,8 +206,22 @@ Offer ends in <span id="timer">04:36:00</span>
 <div class="old">₹449</div>
 <div class="price">₹199</div>
 <div class="left" id="l7"></div>
-<button class="btn" onclick="order('Dumbbell Keychain')">Order Now</button>
+<button class="btn" onclick="order()">Buy Now</button>
 </div>
+
+</div>
+
+<div class="policy">
+
+<h3>Return Policy</h3>
+
+<p>
+
+✔ 7 Days Easy Return  
+✔ Replacement available for damaged product  
+✔ Customer support available 24x7  
+
+</p>
 
 </div>
 
@@ -217,48 +233,68 @@ Offer ends in <span id="timer">04:36:00</span>
 
 <h3>Order Details</h3>
 
-<input placeholder="Name">
+<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
 
-<input placeholder="Mobile Number">
+<input type="text" name="Name" placeholder="Name" required>
 
-<input placeholder="Street Address">
+<input type="tel" name="Phone" placeholder="Mobile Number" required>
 
-<input placeholder="Address">
+<input type="text" name="Street Address" placeholder="Street Address" required>
 
-<input placeholder="Pincode">
+<input type="text" name="Address" placeholder="Address" required>
 
-<select>
+<input type="number" name="Pincode" placeholder="Pincode" required>
 
-<option>Select State</option>
-<option>Bihar</option>
-<option>Delhi</option>
-<option>Uttar Pradesh</option>
-<option>Maharashtra</option>
-<option>Punjab</option>
-<option>Haryana</option>
-<option>Rajasthan</option>
-<option>Gujarat</option>
-<option>West Bengal</option>
-<option>Jharkhand</option>
-<option>Madhya Pradesh</option>
-<option>Tamil Nadu</option>
-<option>Karnataka</option>
-<option>Kerala</option>
-<option>Odisha</option>
+<select name="State" required>
+
+<option value="">Select State</option>
+
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
 <option>Assam</option>
+<option>Bihar</option>
 <option>Chhattisgarh</option>
 <option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
 <option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
 
 </select>
 
-<select>
-<option>Payment Method</option>
+<select name="Payment Method" required>
+
+<option value="">Payment Method</option>
 <option>Cash on Delivery</option>
-<option>UPI rk86319625-1@oksbi</option>
+<option>Online Payment</option>
+
 </select>
 
-<button class="btn" onclick="confirmOrder()">Confirm Order</button>
+<input type="hidden" name="_next" value="thankyou.html">
+
+<input type="hidden" name="_captcha" value="false">
+
+<button type="submit" class="btn">Confirm Order</button>
+
+</form>
 
 </div>
 
@@ -267,22 +303,8 @@ Offer ends in <span id="timer">04:36:00</span>
 <script>
 
 function order(){
+
 document.getElementById("popup").style.display="flex"
-}
-
-function confirmOrder(){
-
-let coins = localStorage.getItem("coins")
-
-if(!coins){
-coins=0
-}
-
-coins=parseInt(coins)+10
-
-localStorage.setItem("coins",coins)
-
-window.location="thankyou.html"
 
 }
 
