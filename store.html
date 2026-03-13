@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>QuickCart</title>
+<title>QuickCart Store</title>
 
 <style>
 
@@ -16,7 +14,7 @@ background:#f5efe6;
 }
 
 header{
-background:black;
+background:#111;
 color:white;
 padding:15px;
 display:flex;
@@ -25,12 +23,20 @@ align-items:center;
 }
 
 .logo{
-font-size:26px;
+font-size:24px;
 font-weight:bold;
 }
 
 .quick{color:white;}
 .cart{color:#2b7cff;}
+
+.cartcount{
+background:red;
+padding:3px 7px;
+border-radius:50%;
+font-size:12px;
+margin-left:5px;
+}
 
 .timer{
 color:#ff4444;
@@ -43,22 +49,42 @@ padding:20px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 gap:20px;
 }
 
 .card{
 background:white;
 border-radius:10px;
-padding:10px;
+padding:15px;
 box-shadow:0 3px 10px rgba(0,0,0,0.1);
 text-align:center;
 }
 
-.card img{
+.main-img{
 width:100%;
-height:180px;
+height:200px;
 object-fit:contain;
+}
+
+.thumbs{
+display:flex;
+justify-content:center;
+gap:5px;
+margin-top:8px;
+}
+
+.thumbs img{
+width:45px;
+height:45px;
+object-fit:contain;
+border:1px solid #ddd;
+cursor:pointer;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
 }
 
 .price{
@@ -67,59 +93,23 @@ font-size:18px;
 font-weight:bold;
 }
 
-.old{
-text-decoration:line-through;
-color:gray;
-font-size:14px;
-}
-
-.left{
-color:#ff4444;
-font-size:13px;
-}
-
 .btn{
-background:#2b7cff;
-color:white;
-border:none;
-padding:10px;
 width:100%;
+padding:10px;
+margin-top:6px;
+border:none;
 border-radius:6px;
-margin-top:8px;
 cursor:pointer;
 }
 
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-display:none;
-justify-content:center;
-align-items:center;
+.cartbtn{
+background:#555;
+color:white;
 }
 
-.form{
-background:white;
-padding:20px;
-border-radius:10px;
-width:320px;
-}
-
-input,select{
-width:100%;
-padding:8px;
-margin-top:6px;
-margin-bottom:10px;
-}
-
-.policy{
-background:white;
-margin-top:30px;
-padding:20px;
-border-radius:10px;
+.buybtn{
+background:#2b7cff;
+color:white;
 }
 
 </style>
@@ -133,168 +123,141 @@ border-radius:10px;
 <div class="logo">
 <span class="quick">Quick</span>
 <span class="cart">Cart</span>
+<span class="cartcount" id="cartCount">0</span>
 </div>
 
 <div class="timer">
-Offer ends in <span id="timer">04:36:00</span>
+Offer Ends In <span id="timer">04:36:00</span>
 </div>
 
 </header>
 
 <div class="container">
 
-<h2>Kitchen Gadgets</h2>
-
 <div class="grid">
 
-<div class="card">
-<img src="chopper1.jpg">
-<div class="old">₹399</div>
-<div class="price">₹199</div>
-<div class="left" id="l1"></div>
-<button class="btn" onclick="order()">Buy Now</button>
-</div>
+<!-- CHOPPER -->
 
 <div class="card">
-<img src="faucet1.jpg">
+
+<img id="chopperMain" src="chopper1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="chopper1.jpg" onclick="changeImg('chopperMain',this)">
+<img src="chopper2.jpg" onclick="changeImg('chopperMain',this)">
+<img src="chopper3.jpg" onclick="changeImg('chopperMain',this)">
+<img src="chopper4.jpg" onclick="changeImg('chopperMain',this)">
+</div>
+
+<div class="old">₹399</div>
+<div class="price">₹199</div>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+
+</div>
+
+<!-- FAUCET -->
+
+<div class="card">
+
+<img id="faucetMain" src="faucet1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="faucet1.jpg" onclick="changeImg('faucetMain',this)">
+<img src="faucet2.jpg" onclick="changeImg('faucetMain',this)">
+<img src="faucet3.jpg" onclick="changeImg('faucetMain',this)">
+<img src="faucet4.jpg" onclick="changeImg('faucetMain',this)">
+</div>
+
 <div class="old">₹299</div>
 <div class="price">₹169</div>
-<div class="left" id="l2"></div>
-<button class="btn" onclick="order()">Buy Now</button>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+
 </div>
 
+<!-- SOAP -->
+
 <div class="card">
-<img src="shoap1.jpg">
+
+<img id="soapMain" src="shoap1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="shoap1.jpg" onclick="changeImg('soapMain',this)">
+<img src="shoap2.jpg" onclick="changeImg('soapMain',this)">
+<img src="shoap3.jpg" onclick="changeImg('soapMain',this)">
+<img src="shoap4.jpg" onclick="changeImg('soapMain',this)">
+</div>
+
 <div class="old">₹499</div>
 <div class="price">₹249</div>
-<div class="left" id="l3"></div>
-<button class="btn" onclick="order()">Buy Now</button>
-</div>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
 
 </div>
 
-<h2>Unique Keychains</h2>
-
-<div class="grid">
+<!-- GUN KEYCHAIN -->
 
 <div class="card">
-<img src="shord1.jpg">
-<div class="old">₹399</div>
-<div class="price">₹199</div>
-<div class="left" id="l4"></div>
-<button class="btn" onclick="order()">Buy Now</button>
+
+<img id="gunMain" src="gun1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="gun1.jpg" onclick="changeImg('gunMain',this)">
+<img src="gun2.jpg" onclick="changeImg('gunMain',this)">
+<img src="gun3.jpg" onclick="changeImg('gunMain',this)">
 </div>
 
-<div class="card">
-<img src="gun1.jpg">
 <div class="old">₹449</div>
 <div class="price">₹229</div>
-<div class="left" id="l5"></div>
-<button class="btn" onclick="order()">Buy Now</button>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+
 </div>
 
+<!-- GEAR KEYCHAIN -->
+
 <div class="card">
-<img src="gear1.jpg">
+
+<img id="gearMain" src="gear1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="gear1.jpg" onclick="changeImg('gearMain',this)">
+<img src="gear2.jpg" onclick="changeImg('gearMain',this)">
+<img src="gear3.jpg" onclick="changeImg('gearMain',this)">
+</div>
+
 <div class="old">₹449</div>
 <div class="price">₹229</div>
-<div class="left" id="l6"></div>
-<button class="btn" onclick="order()">Buy Now</button>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+
 </div>
+
+<!-- DUMBBELL KEYCHAIN -->
 
 <div class="card">
-<img src="dumble1.jpg">
+
+<img id="dumbleMain" src="dumble1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="dumble1.jpg" onclick="changeImg('dumbleMain',this)">
+<img src="dumble2.jpg" onclick="changeImg('dumbleMain',this)">
+<img src="dumble3.jpg" onclick="changeImg('dumbleMain',this)">
+</div>
+
 <div class="old">₹449</div>
 <div class="price">₹199</div>
-<div class="left" id="l7"></div>
-<button class="btn" onclick="order()">Buy Now</button>
-</div>
+
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
 
 </div>
-
-<div class="policy">
-
-<h3>Return Policy</h3>
-
-<p>
-
-✔ 7 Days Easy Return  
-✔ Replacement available for damaged product  
-✔ Customer support available 24x7  
-
-</p>
-
-</div>
-
-</div>
-
-<div class="popup" id="popup">
-
-<div class="form">
-
-<h3>Order Details</h3>
-
-<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
-
-<input type="text" name="Name" placeholder="Name" required>
-
-<input type="tel" name="Phone" placeholder="Mobile Number" required>
-
-<input type="text" name="Street Address" placeholder="Street Address" required>
-
-<input type="text" name="Address" placeholder="Address" required>
-
-<input type="number" name="Pincode" placeholder="Pincode" required>
-
-<select name="State" required>
-
-<option value="">Select State</option>
-
-<option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
-<option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Goa</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
-<option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Kerala</option>
-<option>Madhya Pradesh</option>
-<option>Maharashtra</option>
-<option>Manipur</option>
-<option>Meghalaya</option>
-<option>Mizoram</option>
-<option>Nagaland</option>
-<option>Odisha</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Sikkim</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
-<option>Uttarakhand</option>
-<option>West Bengal</option>
-
-</select>
-
-<select name="Payment Method" required>
-
-<option value="">Payment Method</option>
-<option>Cash on Delivery</option>
-<option>Online Payment</option>
-
-</select>
-
-<input type="hidden" name="_next" value="thankyou.html">
-
-<input type="hidden" name="_captcha" value="false">
-
-<button type="submit" class="btn">Confirm Order</button>
-
-</form>
 
 </div>
 
@@ -302,29 +265,18 @@ Offer ends in <span id="timer">04:36:00</span>
 
 <script>
 
-function order(){
-
-document.getElementById("popup").style.display="flex"
-
+function changeImg(id,el){
+document.getElementById(id).src = el.src
 }
 
-function pieces(id){
+let cart=0
 
-let n=Math.floor(Math.random()*7)+3
-
-document.getElementById(id).innerText=n+" pieces left"
-
+function addCart(){
+cart++
+document.getElementById("cartCount").innerText=cart
 }
 
-pieces("l1")
-pieces("l2")
-pieces("l3")
-pieces("l4")
-pieces("l5")
-pieces("l6")
-pieces("l7")
-
-let time=16560
+let time = 16560
 
 setInterval(function(){
 
@@ -332,7 +284,7 @@ let h=Math.floor(time/3600)
 let m=Math.floor((time%3600)/60)
 let s=time%60
 
-document.getElementById("timer").innerText=h+":"+m+":"+s
+document.getElementById("timer").innerText = h+":"+m+":"+s
 
 time--
 
