@@ -1,155 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickCart | Smart Oil Brush Bottle</title>
+<title>QuickCart Store</title>
 
 <style>
 
 body{
-font-family:Arial;
-background:linear-gradient(135deg,#eef3ff,#ffffff);
 margin:0;
-padding:0;
+font-family:Arial;
+background:#f7f2e9;
 }
 
 header{
-text-align:center;
-font-size:32px;
-font-weight:bold;
-padding:20px;
-color:#1e73ff;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
 background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.product{
+padding:15px;
 display:flex;
-flex-wrap:wrap;
-gap:25px;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
-.gallery{flex:1;}
-.details{flex:1;}
-
-.main-img{
-width:100%;
-height:260px;
-object-fit:cover;
-border-radius:10px;
+.logo{
+font-size:26px;
+font-weight:bold;
 }
 
-.thumbs{
-display:flex;
-gap:10px;
-margin-top:10px;
-}
-
-.thumbs img{
-width:65px;
-height:65px;
-object-fit:cover;
+.quick{
+background:black;
+color:white;
+padding:5px 10px;
 border-radius:6px;
+}
+
+.cartname{
+color:#2b7cff;
+}
+
+.cartbtn{
 cursor:pointer;
 }
 
-.price{
-font-size:28px;
-color:#ff6a00;
-font-weight:bold;
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+padding:20px;
 }
 
-.cut{
+.product{
+background:white;
+border-radius:10px;
+padding:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.product img{
+width:100%;
+border-radius:10px;
+}
+
+.old{
 text-decoration:line-through;
 color:gray;
-margin-right:10px;
 }
 
-.timer{
-background:#222;
-color:white;
-display:inline-block;
-padding:8px 12px;
-border-radius:6px;
-margin-top:10px;
-}
-
-.badges{
-margin-top:10px;
-font-size:15px;
+.price{
+color:red;
+font-size:18px;
 }
 
 .stock{
 color:red;
-font-weight:bold;
-margin-top:10px;
+font-size:12px;
 }
 
-.orders{
-color:#ff6a00;
-font-weight:bold;
-}
-
-.viewing{
-color:#333;
-font-weight:bold;
-}
-
-.order-box{
-margin-top:30px;
-padding:20px;
-background:#fafafa;
-border-radius:10px;
-}
-
-input,select{
-width:100%;
-padding:10px;
-margin:6px 0;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-.btn{
-background:#1e73ff;
+button{
+background:#2b7cff;
 color:white;
-padding:12px;
 border:none;
+padding:10px;
+width:100%;
 border-radius:6px;
 cursor:pointer;
-width:100%;
-margin-top:10px;
-font-size:16px;
 }
 
-.review{
-background:#f7f7f7;
-padding:15px;
-border-radius:8px;
-margin-top:10px;
-}
-
-.popup{
+#cartDrawer{
 position:fixed;
-bottom:20px;
-left:20px;
+right:-320px;
+top:0;
+width:300px;
+height:100%;
 background:white;
-padding:10px 15px;
-border-radius:6px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-display:none;
-}
-
-@media(max-width:768px){
-.product{flex-direction:column;}
-.main-img{height:220px;}
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
 }
 
 </style>
@@ -157,73 +104,116 @@ display:none;
 
 <body>
 
-<header>QuickCart</header>
+<header>
 
-<div class="container">
+<div class="logo">
+<span class="quick">Quick</span>
+<span class="cartname">Cart</span>
+</div>
+
+<div onclick="toggleCart()" class="cartbtn">
+🛒 Cart <span id="cartCount">0</span>
+</div>
+
+</header>
+
+
+<h2 style="padding:20px">Kitchen Gadgets</h2>
+
+<div class="products">
 
 <div class="product">
+<img src="chopper1.jpg">
+<div class="old">₹399</div>
+<div class="price">₹199</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Vegetable Chopper',199)">Add to Cart</button>
+</div>
 
-<div class="gallery">
+<div class="product">
+<img src="faucet1.jpg">
+<div class="old">₹299</div>
+<div class="price">₹169</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Faucet Filter',169)">Add to Cart</button>
+</div>
 
-<img src="oil1.jpg.jpeg" class="main-img" id="mainImg">
-
-<div class="thumbs">
-<img src="oil1.jpg.jpeg" onclick="changeImg(this)">
-<img src="oil2.jpg.jpeg" onclick="changeImg(this)">
-<img src="oil3.jpg.jpeg" onclick="changeImg(this)">
-<img src="oil4.jpg.jpeg" onclick="changeImg(this)">
+<div class="product">
+<img src="shoap1.jpg">
+<div class="old">₹499</div>
+<div class="price">₹249</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Soap Dispenser',249)">Add to Cart</button>
 </div>
 
 </div>
 
-<div class="details">
 
-<h2>Smart Oil Brush Bottle</h2>
+<h2 style="padding:20px">Unique Keychains</h2>
 
-<div>
-<span class="cut">₹299</span>
-<span class="price">₹149</span>
+<div class="products">
+
+<div class="product">
+<img src="shord1.jpg">
+<div class="old">₹399</div>
+<div class="price">₹199</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Sword Keychain',199)">Add to Cart</button>
 </div>
 
-<div class="timer" id="timer">
-Offer Ends In: 2h 00m 00s
+<div class="product">
+<img src="gun1.jpg">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Gun Keychain',229)">Add to Cart</button>
 </div>
 
-<p class="stock">⚠ Only 7 pieces left in stock</p>
-
-<p class="orders">🔥 <span id="orders">23</span> Orders Today</p>
-
-<p class="viewing">👀 <span id="viewers">12</span> people are viewing this product</p>
-
-<div class="badges">
-🔒 Secure Checkout <br>
-🚚 Free Delivery <br>
-💵 Cash on Delivery Available
+<div class="product">
+<img src="gear1.jpg">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Gear Keychain',229)">Add to Cart</button>
 </div>
 
-<p>
-⭐⭐⭐⭐⭐ 4.8 Rating (1,200+ Customers)
-</p>
-
+<div class="product">
+<img src="dumbbell1.jpg">
+<div class="old">₹449</div>
+<div class="price">₹199</div>
+<div class="stock">⚡ 7 pieces left</div>
+<button onclick="addToCart('Dumbbell Keychain',199)">Add to Cart</button>
 </div>
 
 </div>
 
-<div class="order-box">
 
-<h3>Place Your Order</h3>
+<div id="cartDrawer">
 
-<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
+<h2>Your Cart</h2>
 
-<input type="text" name="Name" placeholder="Full Name" required>
+<pre id="cartItems"></pre>
 
-<input type="text" name="Phone" placeholder="Mobile Number" required>
+<h3 id="cartTotal"></h3>
 
-<select name="State" required>
-<option value="">Select State</option>
+<p>Coins: <b id="coinCount">0</b></p>
+
+<button onclick="openOrder()">Checkout</button>
+
+</div>
+
+
+<div id="orderBox" style="display:none">
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="street" placeholder="Street">
+<input id="city" placeholder="City">
+
+<select id="state">
+
 <option>Bihar</option>
 <option>Uttar Pradesh</option>
-<option>Jharkhand</option>
 <option>Delhi</option>
 <option>Maharashtra</option>
 <option>Gujarat</option>
@@ -233,112 +223,87 @@ Offer Ends In: 2h 00m 00s
 <option>Madhya Pradesh</option>
 <option>West Bengal</option>
 <option>Odisha</option>
+<option>Jharkhand</option>
 <option>Karnataka</option>
 <option>Tamil Nadu</option>
-<option>Telangana</option>
 <option>Kerala</option>
+<option>Telangana</option>
+<option>Andhra Pradesh</option>
 <option>Assam</option>
+
 </select>
 
-<input type="text" name="City" placeholder="City" required>
-<input type="text" name="Address" placeholder="Street Address" required>
-<input type="text" name="Pincode" placeholder="Pin Code" required>
+<input id="pincode" placeholder="Pincode">
 
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://rajpatel9241.github.io/Quick-Cart/thankyou.html">
-
-<button type="submit" class="btn">
-Cash on Delivery
-</button>
-
-</form>
-
-<button class="btn" onclick="pay()">
-Pay Online (UPI)
-</button>
+<button onclick="payUPI()">Pay Online</button>
+<button onclick="sendOrder()">Cash on Delivery</button>
 
 </div>
 
-<h3>Customer Reviews</h3>
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<b>Neha Sharma – Delhi</b>  
-<p>Bahut useful product hai. Cooking me oil control ho gaya.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<b>Ravi Kumar – Patna</b>  
-<p>Quality achhi hai aur delivery fast thi.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<b>Pooja Singh – Lucknow</b>  
-<p>Kitchen me bahut helpful product hai.</p>
-</div>
-
-</div>
-
-<div class="popup" id="popup"></div>
 
 <script>
 
-function changeImg(el){
-document.getElementById("mainImg").src=el.src;
+let cart=[]
+let coins=0
+
+function toggleCart(){
+
+let cartDrawer=document.getElementById("cartDrawer")
+
+if(cartDrawer.style.right=="0px"){
+cartDrawer.style.right="-320px"
+}else{
+cartDrawer.style.right="0px"
 }
 
-function pay(){
-window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&cu=INR";
 }
 
-let orders = 23;
-setInterval(()=>{
-orders++;
-document.getElementById("orders").innerHTML=orders;
-},15000);
+function addToCart(product,price){
 
-let viewers = 12;
-setInterval(()=>{
-viewers = Math.floor(Math.random()*8)+8;
-document.getElementById("viewers").innerHTML=viewers;
-},5000);
+cart.push({product,price})
 
-let names=["Rahul","Amit","Neha","Pooja","Ravi","Arjun","Karan","Sneha"];
-let cities=["Delhi","Patna","Lucknow","Mumbai","Jaipur","Kolkata"];
+coins+=10
 
-function popup(){
-let name=names[Math.floor(Math.random()*names.length)];
-let city=cities[Math.floor(Math.random()*cities.length)];
+document.getElementById("cartCount").innerText=cart.length
 
-let pop=document.getElementById("popup");
+updateCart()
 
-pop.innerHTML="🛒 "+name+" from "+city+" ordered 1 piece";
-
-pop.style.display="block";
-
-setTimeout(()=>{
-pop.style.display="none";
-},4000);
 }
 
-setInterval(popup,10000);
+function updateCart(){
 
-let time=7200;
+let list=""
+let total=0
 
-function countdown(){
+cart.forEach(p=>{
+list+=p.product+" - ₹"+p.price+"\n"
+total+=p.price
+})
 
-let h=Math.floor(time/3600);
-let m=Math.floor((time%3600)/60);
-let s=time%60;
+document.getElementById("cartItems").innerText=list
+document.getElementById("cartTotal").innerText="Total ₹"+total
+document.getElementById("coinCount").innerText=coins
 
-document.getElementById("timer").innerHTML="Offer Ends In: "+h+"h "+m+"m "+s+"s";
-
-time--;
 }
 
-setInterval(countdown,1000);
+function openOrder(){
+document.getElementById("orderBox").style.display="block"
+}
+
+function payUPI(){
+
+window.location.href="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&cu=INR"
+
+}
+
+function sendOrder(){
+
+let name=document.getElementById("name").value
+let phone=document.getElementById("phone").value
+
+window.location.href="mailto:rounakpatel0723@gmail.com?subject=QuickCart Order&body=Name:"+name+" Phone:"+phone
+
+}
 
 </script>
 
