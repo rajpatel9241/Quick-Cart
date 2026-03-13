@@ -5,7 +5,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Order - QuickCart</title>
+<title>QuickCart Order</title>
 
 <style>
 
@@ -82,19 +82,20 @@ cursor:pointer;
 
 <h2>Order Details</h2>
 
-<form onsubmit="return goThankyou()">
+<form onsubmit="return placeOrder()">
 
-<input id="name" placeholder="Full Name" required>
+<input id="name" pattern="[A-Za-z ]+" placeholder="Full Name" required>
 
-<input id="phone" placeholder="Mobile Number" required>
+<input id="phone" type="tel" pattern="[0-9]{10}" placeholder="Mobile Number (10 digits)" required>
 
 <input id="address" placeholder="Street Address" required>
 
-<input id="pincode" placeholder="Pincode" required>
+<input id="pincode" pattern="[0-9]{6}" placeholder="Pincode (6 digits)" required>
 
 <select required>
 
-<option>Select State</option>
+<option value="">Select State</option>
+
 <option>Bihar</option>
 <option>Delhi</option>
 <option>Maharashtra</option>
@@ -114,10 +115,13 @@ cursor:pointer;
 
 </select>
 
-<select required>
+<select id="payment" required>
 
-<option>Cash on Delivery</option>
-<option>UPI Payment</option>
+<option value="">Select Payment Method</option>
+
+<option value="cod">Cash on Delivery</option>
+
+<option value="upi">Online Payment (UPI)</option>
 
 </select>
 
@@ -163,17 +167,27 @@ q.value=parseInt(q.value)-1
 
 }
 
-function goThankyou(){
+function placeOrder(){
 
-let name=document.getElementById("name").value
+let payment=document.getElementById("payment").value
 
-let phone=document.getElementById("phone").value
+let qty=parseInt(document.getElementById("qty").value)
 
-let address=document.getElementById("address").value
+let price=199
 
-if(name=="" || phone=="" || address==""){
+let total=price*qty
 
-alert("Please fill all details")
+if(payment=="upi"){
+
+let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
+
+window.location.href=upi
+
+setTimeout(function(){
+
+window.location.href="thankyou.html"
+
+},4000)
 
 return false
 
