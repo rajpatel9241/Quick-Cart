@@ -25,14 +25,31 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
 
 .product{
 display:flex;
+align-items:center;
 gap:10px;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .product img{
 width:60px;
 height:60px;
 object-fit:contain;
+}
+
+.qty{
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+.qty button{
+padding:3px 10px;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+font-size:13px;
 }
 
 .total{
@@ -49,7 +66,7 @@ border:1px solid #ccc;
 border-radius:5px;
 }
 
-button{
+button.submit{
 width:100%;
 padding:12px;
 margin-top:15px;
@@ -87,7 +104,7 @@ Total ₹ <span id="total">0</span>
 
 <input type="text" id="street" placeholder="Street Address" required>
 
-<input type="text" id="address" placeholder="Address (Area / Landmark)" required>
+<input type="text" id="address" placeholder="Address / Area / Landmark" required>
 
 <input type="text" id="pincode" placeholder="Pincode (6 digits)" pattern="[0-9]{6}" required>
 
@@ -127,7 +144,9 @@ Total ₹ <span id="total">0</span>
 
 </select>
 
-<button type="submit">Confirm Order</button>
+<button class="submit" type="submit">
+Confirm Order
+</button>
 
 </form>
 
@@ -137,28 +156,95 @@ Total ₹ <span id="total">0</span>
 
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-let productsDiv = document.getElementById("products")
+let list = document.getElementById("products")
 
-let total = 0
+function render(){
 
-cart.forEach(item=>{
+list.innerHTML=""
 
-productsDiv.innerHTML += `
+let total=0
+
+cart.forEach((p,index)=>{
+
+if(!p.qty) p.qty=1
+
+total += p.price * p.qty
+
+list.innerHTML += `
+
 <div class="product">
-<img src="${item.img}">
-<div>
-<b>${item.name}</b><br>
-₹${item.price}
-</div>
-</div>
-`
 
-total += Number(item.price)
+<img src="${p.img}">
+
+<div>
+
+<b>${p.name}</b><br>
+
+₹${p.price}
+
+<div class="qty">
+
+<button onclick="minus(${index})">-</button>
+
+<span>${p.qty}</span>
+
+<button onclick="plus(${index})">+</button>
+
+</div>
+
+<div class="remove" onclick="removeItem(${index})">
+Remove
+</div>
+
+</div>
+
+</div>
+
+`
 
 })
 
-document.getElementById("total").innerText = total
+document.getElementById("total").innerText=total
 
+}
+
+function plus(i){
+
+cart[i].qty++
+
+save()
+
+}
+
+function minus(i){
+
+if(cart[i].qty>1){
+
+cart[i].qty--
+
+save()
+
+}
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+save()
+
+}
+
+function save(){
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+render()
+
+}
+
+render()
 
 document.getElementById("orderForm").onsubmit=function(e){
 
@@ -167,15 +253,18 @@ e.preventDefault()
 let phone=document.getElementById("phone").value
 let pin=document.getElementById("pincode").value
 let payment=document.getElementById("payment").value
+let total=document.getElementById("total").innerText
 
 if(phone.length!=10){
-alert("Enter valid 10 digit mobile number")
-return
+
+return alert("Enter valid 10 digit mobile number")
+
 }
 
 if(pin.length!=6){
-alert("Enter valid pincode")
-return
+
+return alert("Enter valid pincode")
+
 }
 
 if(payment=="upi"){
@@ -185,7 +274,9 @@ let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
 window.location.href=upi
 
 setTimeout(()=>{
+
 window.location.href="thankyou.html"
+
 },2000)
 
 }
