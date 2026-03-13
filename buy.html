@@ -257,13 +257,15 @@ let total=document.getElementById("total").innerText
 
 if(phone.length!=10){
 
-return alert("Enter valid 10 digit mobile number")
+alert("Enter valid 10 digit mobile number")
+return
 
 }
 
 if(pin.length!=6){
 
-return alert("Enter valid pincode")
+alert("Enter valid pincode")
+return
 
 }
 
@@ -273,7 +275,7 @@ let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
 
 window.location.href=upi
 
-setTimeout(()=>{
+setTimeout(function(){
 
 window.location.href="thankyou.html"
 
