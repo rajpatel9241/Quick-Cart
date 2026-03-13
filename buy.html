@@ -23,13 +23,21 @@ margin:0;
 background:white;
 padding:25px;
 border-radius:10px;
-width:320px;
+width:350px;
 box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 h2{
 text-align:center;
+}
+
+.product{
+text-align:center;
 margin-bottom:15px;
+}
+
+.product img{
+width:120px;
 }
 
 input,select{
@@ -43,7 +51,6 @@ border-radius:5px;
 .qtybox{
 display:flex;
 justify-content:center;
-align-items:center;
 gap:10px;
 margin-top:10px;
 }
@@ -60,7 +67,13 @@ width:50px;
 text-align:center;
 }
 
-button.orderbtn{
+.total{
+text-align:center;
+font-weight:bold;
+margin-top:10px;
+}
+
+button{
 width:100%;
 padding:12px;
 margin-top:15px;
@@ -81,6 +94,16 @@ cursor:pointer;
 <div class="box">
 
 <h2>Order Details</h2>
+
+<div class="product">
+
+<img id="productImg">
+
+<h3 id="productName"></h3>
+
+Price ₹<span id="price"></span>
+
+</div>
 
 <form onsubmit="return placeOrder()">
 
@@ -135,7 +158,13 @@ cursor:pointer;
 
 </div>
 
-<button class="orderbtn" type="submit">
+<div class="total">
+
+Total ₹<span id="total"></span>
+
+</div>
+
+<button type="submit">
 
 Confirm Order
 
@@ -147,21 +176,45 @@ Confirm Order
 
 <script>
 
+let name=localStorage.getItem("productName")
+
+let img=localStorage.getItem("productImg")
+
+let price=localStorage.getItem("productPrice")
+
+document.getElementById("productName").innerText=name
+document.getElementById("productImg").src=img
+document.getElementById("price").innerText=price
+
+let qty=1
+
+function updateTotal(){
+
+document.getElementById("total").innerText=price*qty
+
+}
+
+updateTotal()
+
 function plus(){
 
-let q=document.getElementById("qty")
+qty++
 
-q.value=parseInt(q.value)+1
+document.getElementById("qty").value=qty
+
+updateTotal()
 
 }
 
 function minus(){
 
-let q=document.getElementById("qty")
+if(qty>1){
 
-if(q.value>1){
+qty--
 
-q.value=parseInt(q.value)-1
+document.getElementById("qty").value=qty
+
+updateTotal()
 
 }
 
@@ -170,10 +223,6 @@ q.value=parseInt(q.value)-1
 function placeOrder(){
 
 let payment=document.getElementById("payment").value
-
-let qty=parseInt(document.getElementById("qty").value)
-
-let price=199
 
 let total=price*qty
 
