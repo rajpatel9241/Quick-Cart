@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>QuickCart Store</title>
 
 <style>
@@ -12,7 +10,7 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f5efe6;
+background:#f6f6f6;
 }
 
 header{
@@ -29,18 +27,23 @@ font-size:24px;
 font-weight:bold;
 }
 
-.quick{color:white;}
-.cart{color:#2b7cff;}
+.logo span{
+color:#2b7cff;
+}
 
-.carticon{
-font-size:22px;
+.timer{
+color:#ff4444;
+font-size:14px;
+}
+
+.cart{
+font-size:20px;
 cursor:pointer;
 }
 
 .badge{
 background:red;
-color:white;
-padding:3px 7px;
+padding:3px 8px;
 border-radius:50%;
 font-size:12px;
 }
@@ -50,7 +53,7 @@ padding:20px;
 }
 
 h2{
-margin-top:30px;
+margin-top:40px;
 }
 
 .grid{
@@ -61,15 +64,15 @@ gap:20px;
 
 .card{
 background:white;
-border-radius:10px;
 padding:15px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
 text-align:center;
 }
 
 .main-img{
 width:100%;
-height:200px;
+height:180px;
 object-fit:contain;
 }
 
@@ -77,12 +80,12 @@ object-fit:contain;
 display:flex;
 justify-content:center;
 gap:5px;
-margin-top:8px;
+margin-top:6px;
 }
 
 .thumbs img{
-width:40px;
-height:40px;
+width:35px;
+height:35px;
 cursor:pointer;
 }
 
@@ -93,21 +96,21 @@ color:gray;
 
 .price{
 color:red;
-font-size:18px;
 font-weight:bold;
+font-size:18px;
 }
 
 .stock{
-color:#ff4444;
 font-size:12px;
+color:#ff4444;
 }
 
 .btn{
 width:100%;
-padding:10px;
-margin-top:6px;
+padding:9px;
+margin-top:5px;
 border:none;
-border-radius:6px;
+border-radius:5px;
 cursor:pointer;
 }
 
@@ -121,6 +124,21 @@ background:#2b7cff;
 color:white;
 }
 
+.review{
+background:white;
+padding:20px;
+margin-top:40px;
+border-radius:10px;
+}
+
+.review-card{
+margin-bottom:15px;
+}
+
+.stars{
+color:#ffa500;
+}
+
 </style>
 
 </head>
@@ -130,14 +148,15 @@ color:white;
 <header>
 
 <div class="logo">
-<span class="quick">Quick</span>
-<span class="cart">Cart</span>
+Quick <span>Cart</span>
 </div>
 
-<div class="carticon" onclick="openCart()">
+<div class="timer">
+Offer Ends In <span id="timer">04:36:00</span>
+</div>
 
-🛒 <span class="badge" id="cartCount">0</span>
-
+<div class="cart" onclick="openCart()">
+🛒 <span id="cartCount" class="badge">0</span>
 </div>
 
 </header>
@@ -155,12 +174,10 @@ color:white;
 <img id="c1" src="chopper1.jpg" class="main-img">
 
 <div class="thumbs">
-
 <img src="chopper1.jpg" onclick="changeImg('c1',this)">
 <img src="chopper2.jpg" onclick="changeImg('c1',this)">
 <img src="chopper3.jpg" onclick="changeImg('c1',this)">
 <img src="chopper4.jpg" onclick="changeImg('c1',this)">
-
 </div>
 
 <div class="old">₹399</div>
@@ -179,19 +196,17 @@ Buy Now
 
 </div>
 
-<!-- OIL DISPENSER -->
+<!-- OIL -->
 
 <div class="card">
 
 <img id="o1" src="oil1.jpg" class="main-img">
 
 <div class="thumbs">
-
 <img src="oil1.jpg" onclick="changeImg('o1',this)">
 <img src="oil2.jpg" onclick="changeImg('o1',this)">
 <img src="oil3.jpg" onclick="changeImg('o1',this)">
 <img src="oil4.jpg" onclick="changeImg('o1',this)">
-
 </div>
 
 <div class="old">₹299</div>
@@ -210,69 +225,120 @@ Buy Now
 
 </div>
 
+<!-- FAUCET -->
+
+<div class="card">
+
+<img id="f1" src="faucet1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="faucet1.jpg" onclick="changeImg('f1',this)">
+<img src="faucet2.jpg" onclick="changeImg('f1',this)">
+<img src="faucet3.jpg" onclick="changeImg('f1',this)">
+<img src="faucet4.jpg" onclick="changeImg('f1',this)">
+</div>
+
+<div class="old">₹299</div>
+<div class="price">₹169</div>
+<div class="stock">Only 5 pieces left</div>
+
+<button class="btn cartbtn"
+onclick="addToCart('Water Faucet',169,'faucet1.jpg')">
+Add to Cart
+</button>
+
+<button class="btn buybtn"
+onclick="buyProduct('Water Faucet','faucet1.jpg',169)">
+Buy Now
+</button>
+
+</div>
+
+<!-- SOAP -->
+
+<div class="card">
+
+<img id="s1" src="shoap1.jpg" class="main-img">
+
+<div class="thumbs">
+<img src="shoap1.jpg" onclick="changeImg('s1',this)">
+<img src="shoap2.jpg" onclick="changeImg('s1',this)">
+<img src="shoap3.jpg" onclick="changeImg('s1',this)">
+<img src="shoap4.jpg" onclick="changeImg('s1',this)">
+</div>
+
+<div class="old">₹499</div>
+<div class="price">₹249</div>
+<div class="stock">Only 4 pieces left</div>
+
+<button class="btn cartbtn"
+onclick="addToCart('Soap Dispenser',249,'shoap1.jpg')">
+Add to Cart
+</button>
+
+<button class="btn buybtn"
+onclick="buyProduct('Soap Dispenser','shoap1.jpg',249)">
+Buy Now
+</button>
+
+</div>
+
 </div>
 
 <h2>Unique Keychains</h2>
 
 <div class="grid">
 
-<!-- GUN -->
-
 <div class="card">
-
-<img id="g1" src="gun1.jpg" class="main-img">
-
-<div class="thumbs">
-
-<img src="gun1.jpg" onclick="changeImg('g1',this)">
-<img src="gun2.jpg" onclick="changeImg('g1',this)">
-<img src="gun3.jpg" onclick="changeImg('g1',this)">
-
-</div>
-
-<div class="old">₹449</div>
+<img src="gun1.jpg" class="main-img">
 <div class="price">₹229</div>
-<div class="stock">Only 5 pieces left</div>
-
-<button class="btn cartbtn"
-onclick="addToCart('Gun Keychain',229,'gun1.jpg')">
-Add to Cart
-</button>
-
-<button class="btn buybtn"
-onclick="buyProduct('Gun Keychain','gun1.jpg',229)">
-Buy Now
-</button>
-
+<button class="btn cartbtn" onclick="addToCart('Gun Keychain',229,'gun1.jpg')">Add to Cart</button>
+<button class="btn buybtn" onclick="buyProduct('Gun Keychain','gun1.jpg',229)">Buy Now</button>
 </div>
-
-<!-- GEAR -->
 
 <div class="card">
+<img src="gear1.jpg" class="main-img">
+<div class="price">₹199</div>
+<button class="btn cartbtn" onclick="addToCart('Gear Keychain',199,'gear1.jpg')">Add to Cart</button>
+<button class="btn buybtn" onclick="buyProduct('Gear Keychain','gear1.jpg',199)">Buy Now</button>
+</div>
 
-<img id="gear" src="gear1.jpg" class="main-img">
+<div class="card">
+<img src="shord1.jpg" class="main-img">
+<div class="price">₹199</div>
+<button class="btn cartbtn" onclick="addToCart('Sword Keychain',199,'shord1.jpg')">Add to Cart</button>
+<button class="btn buybtn" onclick="buyProduct('Sword Keychain','shord1.jpg',199)">Buy Now</button>
+</div>
 
-<div class="thumbs">
-
-<img src="gear1.jpg" onclick="changeImg('gear',this)">
-<img src="gear2.jpg" onclick="changeImg('gear',this)">
+<div class="card">
+<img src="dumble1.jpg" class="main-img">
+<div class="price">₹199</div>
+<button class="btn cartbtn" onclick="addToCart('Dumbbell Keychain',199,'dumble1.jpg')">Add to Cart</button>
+<button class="btn buybtn" onclick="buyProduct('Dumbbell Keychain','dumble1.jpg',199)">Buy Now</button>
+</div>
 
 </div>
 
-<div class="old">₹399</div>
-<div class="price">₹199</div>
-<div class="stock">Only 4 pieces left</div>
+<div class="review">
 
-<button class="btn cartbtn"
-onclick="addToCart('Gear Keychain',199,'gear1.jpg')">
-Add to Cart
-</button>
+<h2>Customer Reviews</h2>
 
-<button class="btn buybtn"
-onclick="buyProduct('Gear Keychain','gear1.jpg',199)">
-Buy Now
-</button>
+<div class="review-card">
+<b>Rahul Sharma</b>
+<div class="stars">★★★★★</div>
+Amazing product quality. Fast delivery.
+</div>
 
+<div class="review-card">
+<b>Priya Verma</b>
+<div class="stars">★★★★☆</div>
+Oil dispenser is very useful in kitchen.
+</div>
+
+<div class="review-card">
+<b>Amit Singh</b>
+<div class="stars">★★★★★</div>
+Keychains look premium. Worth buying.
 </div>
 
 </div>
@@ -312,20 +378,30 @@ function openCart(){
 if(cart.length==0){
 
 alert("Cart Empty")
-
 return
 
 }
 
-let p=cart[0]
-
-localStorage.setItem("productName",p.name)
-localStorage.setItem("productImg",p.img)
-localStorage.setItem("productPrice",p.price)
+localStorage.setItem("cart",JSON.stringify(cart))
 
 window.location.href="buy.html"
 
 }
+
+let time = 16560;
+
+setInterval(function(){
+
+let h = Math.floor(time/3600);
+let m = Math.floor((time%3600)/60);
+let s = time%60;
+
+document.getElementById("timer").innerText =
+h + ":" + m + ":" + s;
+
+time--;
+
+},1000);
 
 </script>
 
