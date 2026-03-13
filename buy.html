@@ -27,7 +27,7 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
 display:flex;
 align-items:center;
 gap:10px;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .product img{
@@ -38,12 +38,11 @@ object-fit:contain;
 
 .qty{
 display:flex;
-align-items:center;
 gap:5px;
 }
 
 .qty button{
-padding:4px 10px;
+padding:3px 10px;
 }
 
 .remove{
@@ -55,7 +54,7 @@ font-size:14px;
 .total{
 font-size:20px;
 font-weight:bold;
-margin:20px 0;
+margin:15px 0;
 }
 
 input,select{
@@ -66,7 +65,7 @@ border:1px solid #ccc;
 border-radius:5px;
 }
 
-button.submit{
+button{
 width:100%;
 padding:12px;
 margin-top:15px;
@@ -88,7 +87,7 @@ cursor:pointer;
 
 <h2>Your Order</h2>
 
-<div id="productList"></div>
+<div id="products"></div>
 
 <div class="total">
 Total ₹ <span id="total">0</span>
@@ -96,20 +95,17 @@ Total ₹ <span id="total">0</span>
 
 <h2>Delivery Details</h2>
 
-<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
+<form id="orderForm">
 
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="thankyou.html">
+<input type="text" id="name" placeholder="Full Name" required>
 
-<input type="text" name="Full Name" placeholder="Full Name" required>
+<input type="tel" id="phone" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
 
-<input type="tel" name="Mobile Number" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
+<input type="text" id="address" placeholder="Street Address" required>
 
-<input type="text" name="Street Address" placeholder="Street Address" required>
+<input type="text" id="pincode" placeholder="Pincode (6 digits)" pattern="[0-9]{6}" required>
 
-<input type="text" name="Pincode" placeholder="Pincode (6 digits)" pattern="[0-9]{6}" required>
-
-<select name="State" required>
+<select id="state" required>
 
 <option value="">Select State</option>
 
@@ -137,17 +133,15 @@ Total ₹ <span id="total">0</span>
 
 </select>
 
-<select name="Payment Method" required>
+<select id="payment" required>
 
 <option value="">Select Payment</option>
-<option>Cash on Delivery</option>
-<option>Online UPI</option>
+<option value="cod">Cash on Delivery</option>
+<option value="upi">Online UPI</option>
 
 </select>
 
-<button class="submit" type="submit">
-Confirm Order
-</button>
+<button type="submit">Confirm Order</button>
 
 </form>
 
@@ -157,95 +151,79 @@ Confirm Order
 
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-let list = document.getElementById("productList")
+let productsDiv = document.getElementById("products")
 
-function render(){
+let total = 0
 
-list.innerHTML=""
+cart.forEach((item,index)=>{
 
-let total=0
+if(!item.qty) item.qty=1
 
-cart.forEach((p,index)=>{
+total += item.price * item.qty
 
-if(!p.qty) p.qty=1
-
-total += p.price * p.qty
-
-list.innerHTML += `
-
+productsDiv.innerHTML += `
 <div class="product">
-
-<img src="${p.img}">
-
+<img src="${item.img}">
 <div>
-
-<b>${p.name}</b><br>
-
-₹${p.price}
-
-<div class="qty">
-
-<button onclick="minus(${index})">-</button>
-
-<span>${p.qty}</span>
-
-<button onclick="plus(${index})">+</button>
-
+<b>${item.name}</b><br>
+₹${item.price}
 </div>
-
-<div class="remove" onclick="removeItem(${index})">
-Remove
 </div>
-
-</div>
-
-</div>
-
 `
 
 })
 
-document.getElementById("total").innerText=total
+document.getElementById("total").innerText = total
+
+
+document.getElementById("orderForm").onsubmit=function(e){
+
+e.preventDefault()
+
+let name=document.getElementById("name").value
+let phone=document.getElementById("phone").value
+let address=document.getElementById("address").value
+let pin=document.getElementById("pincode").value
+let state=document.getElementById("state").value
+let payment=document.getElementById("payment").value
+
+if(phone.length!=10){
+alert("Enter valid 10 digit mobile number")
+return
+}
+
+if(pin.length!=6){
+alert("Enter valid pincode")
+return
+}
+
+let subject="QuickCart New Order"
+
+let body="Name: "+name+
+"%0APhone: "+phone+
+"%0AAddress: "+address+
+"%0APincode: "+pin+
+"%0AState: "+state+
+"%0APayment: "+payment+
+"%0ATotal: ₹"+total
+
+window.location.href="mailto:rounakpatel0723@gmail.com?subject="+subject+"&body="+body
+
+if(payment=="upi"){
+
+let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
+
+setTimeout(()=>{
+window.location.href=upi
+},1000)
 
 }
 
-function plus(i){
-
-cart[i].qty++
-
-save()
+setTimeout(()=>{
+window.location.href="thankyou.html"
+},2000)
 
 }
-
-function minus(i){
-
-if(cart[i].qty>1){
-
-cart[i].qty--
-
-save()
-
-}
-
-}
-
-function removeItem(i){
-
-cart.splice(i,1)
-
-save()
-
-}
-
-function save(){
-
-localStorage.setItem("cart",JSON.stringify(cart))
-
-render()
-
-}
-
-render()
 
 </script>
 
