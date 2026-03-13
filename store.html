@@ -3,19 +3,20 @@
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>QuickCart</title>
 
 <style>
 
 body{
-font-family:Arial;
 margin:0;
-background:#f7f2e9;
+font-family:Arial;
+background:#f6f1e9;
 }
 
 header{
-background:#111;
+background:black;
 color:white;
 padding:15px;
 display:flex;
@@ -24,52 +25,73 @@ align-items:center;
 }
 
 .logo{
-font-size:24px;
+font-size:26px;
+font-weight:bold;
 }
 
-.quick{color:white;}
-.cart{color:#2b7cff;}
+.quick{
+color:white;
+}
+
+.cart{
+color:#2b7cff;
+}
 
 .timer{
-background:#ff3c3c;
-padding:5px 10px;
-border-radius:6px;
-margin-left:10px;
+color:#ff4d4d;
 font-size:14px;
 }
 
 .container{
-padding:20px;
+padding:25px;
 }
 
-.products{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 }
 
-.product{
+.card{
 background:white;
-padding:10px;
 border-radius:10px;
+padding:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
 text-align:center;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
-.product img{
+.card img{
 width:100%;
-height:160px;
-object-fit:cover;
-border-radius:8px;
-cursor:pointer;
+height:180px;
+object-fit:contain;
 }
 
-.price{color:red;}
+.price{
+color:red;
+font-size:18px;
+font-weight:bold;
+}
 
 .old{
 text-decoration:line-through;
 color:gray;
-font-size:12px;
+font-size:14px;
+}
+
+.left{
+color:#ff4d4d;
+font-size:13px;
+}
+
+.btn{
+background:#2b7cff;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:6px;
+margin-top:8px;
+cursor:pointer;
 }
 
 .popup{
@@ -78,37 +100,24 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:white;
+background:rgba(0,0,0,0.5);
 display:none;
+justify-content:center;
+align-items:center;
+}
+
+.form{
+background:white;
 padding:20px;
-overflow:auto;
+border-radius:10px;
+width:300px;
 }
 
-.thumbs img{
-width:60px;
-margin:5px;
-cursor:pointer;
-}
-
-button{
-background:#2b7cff;
-border:none;
-color:white;
-padding:10px;
-margin-top:5px;
-border-radius:5px;
+input,select{
 width:100%;
-}
-
-.spin{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:20px;
-display:none;
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
+padding:8px;
+margin-top:6px;
+margin-bottom:10px;
 }
 
 </style>
@@ -122,206 +131,190 @@ box-shadow:0 5px 20px rgba(0,0,0,0.2);
 <div class="logo">
 <span class="quick">Quick</span>
 <span class="cart">Cart</span>
-
-<span class="timer" id="timer"></span>
-
 </div>
 
-<div>
-Coins: <span id="coins">0</span>
+<div class="timer">
+Offer ends in <span id="timer">04:36:00</span>
 </div>
 
 </header>
-
 
 <div class="container">
 
 <h2>Kitchen Gadgets</h2>
 
-<div class="products">
+<div class="grid">
 
-<div class="product">
-<img src="chopper1.jpg" onclick="openProduct('chopper')">
+<div class="card">
+<img src="chopper1.jpg">
 <div class="old">₹399</div>
 <div class="price">₹199</div>
+<div class="left" id="l1"></div>
+<button class="btn" onclick="order('Chopper')">Order Now</button>
 </div>
 
-<div class="product">
-<img src="oil1.jpg" onclick="openProduct('oil')">
-<div class="old">₹399</div>
-<div class="price">₹199</div>
-</div>
-
-<div class="product">
-<img src="faucet1.jpg" onclick="openProduct('faucet')">
+<div class="card">
+<img src="faucet1.jpg">
 <div class="old">₹299</div>
 <div class="price">₹169</div>
+<div class="left" id="l2"></div>
+<button class="btn" onclick="order('Faucet')">Order Now</button>
 </div>
 
-<div class="product">
-<img src="shoap1.jpg" onclick="openProduct('soap')">
+<div class="card">
+<img src="shoap1.jpg">
 <div class="old">₹499</div>
 <div class="price">₹249</div>
+<div class="left" id="l3"></div>
+<button class="btn" onclick="order('Soap Dispenser')">Order Now</button>
 </div>
 
 </div>
-
 
 <h2>Unique Keychains</h2>
 
-<div class="products">
+<div class="grid">
 
-<div class="product">
-<img src="gun1.jpg" onclick="openProduct('gun')">
-<div class="old">₹449</div>
-<div class="price">₹229</div>
-</div>
-
-<div class="product">
-<img src="gear1.jpg" onclick="openProduct('gear')">
-<div class="old">₹449</div>
-<div class="price">₹229</div>
-</div>
-
-<div class="product">
-<img src="shord1.jpg" onclick="openProduct('sword')">
+<div class="card">
+<img src="shord1.jpg">
 <div class="old">₹399</div>
 <div class="price">₹199</div>
+<div class="left" id="l4"></div>
+<button class="btn" onclick="order('Sword Keychain')">Order Now</button>
 </div>
 
-<div class="product">
-<img src="dumble1.jpg" onclick="openProduct('dumb')">
+<div class="card">
+<img src="gun1.jpg">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+<div class="left" id="l5"></div>
+<button class="btn" onclick="order('Gun Keychain')">Order Now</button>
+</div>
+
+<div class="card">
+<img src="gear1.jpg">
+<div class="old">₹449</div>
+<div class="price">₹229</div>
+<div class="left" id="l6"></div>
+<button class="btn" onclick="order('Gear Keychain')">Order Now</button>
+</div>
+
+<div class="card">
+<img src="dumble1.jpg">
 <div class="old">₹449</div>
 <div class="price">₹199</div>
+<div class="left" id="l7"></div>
+<button class="btn" onclick="order('Dumbbell Keychain')">Order Now</button>
 </div>
 
 </div>
 
 </div>
 
+<div class="popup" id="popup">
 
-<div class="popup" id="productPopup">
+<div class="form">
 
-<img id="mainImg" style="width:100%;max-width:350px">
+<h3>Order Details</h3>
 
-<div class="thumbs" id="thumbs"></div>
+<input placeholder="Name">
 
-<button onclick="checkout()">Order Now</button>
-<button onclick="addCoins()">Add to Cart</button>
-<button onclick="closeProduct()">Close</button>
+<input placeholder="Mobile Number">
+
+<input placeholder="Street Address">
+
+<input placeholder="Address">
+
+<input placeholder="Pincode">
+
+<select>
+
+<option>Select State</option>
+<option>Bihar</option>
+<option>Delhi</option>
+<option>Uttar Pradesh</option>
+<option>Maharashtra</option>
+<option>Punjab</option>
+<option>Haryana</option>
+<option>Rajasthan</option>
+<option>Gujarat</option>
+<option>West Bengal</option>
+<option>Jharkhand</option>
+<option>Madhya Pradesh</option>
+<option>Tamil Nadu</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Odisha</option>
+<option>Assam</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Telangana</option>
+
+</select>
+
+<select>
+<option>Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI rk86319625-1@oksbi</option>
+</select>
+
+<button class="btn" onclick="confirmOrder()">Confirm Order</button>
 
 </div>
 
-
-<div class="spin" id="spin">
-
-<h3>Spin & Win</h3>
-
-<button onclick="spin()">Spin</button>
-
-<p id="spinResult"></p>
-
 </div>
-
 
 <script>
 
-let coins=0
+function order(){
+document.getElementById("popup").style.display="flex"
+}
 
-let products={
+function confirmOrder(){
 
-chopper:["chopper1.jpg","chopper2.jpg","chopper3.jpg","chopper4.jpg"],
-oil:["oil1.jpg","oil2.jpg","oil3.jpg","oil4.jpg"],
-faucet:["faucet1.jpg","faucet2.jpg","faucet3.jpg","faucet4.jpg"],
-soap:["shoap1.jpg","shoap2.jpg","shoap3.jpg","shoap4.jpg"],
+let coins = localStorage.getItem("coins")
 
-gun:["gun1.jpg","gun2.jpg","gun3.jpg"],
-gear:["gear1.jpg","gear2.jpg","gear3.jpg"],
-sword:["shord1.jpg","shord2.jpg","shord3.jpg"],
-dumb:["dumble1.jpg","dumble2.jpg","dumble3.jpg"]
+if(!coins){
+coins=0
+}
+
+coins=parseInt(coins)+10
+
+localStorage.setItem("coins",coins)
+
+window.location="thankyou.html"
 
 }
 
-function openProduct(name){
+function pieces(id){
 
-let images=products[name]
+let n=Math.floor(Math.random()*7)+3
 
-document.getElementById("productPopup").style.display="block"
-
-document.getElementById("mainImg").src=images[0]
-
-let thumbs=""
-
-images.forEach(function(i){
-
-thumbs+=<img src="${i}" onclick="changeImg('${i}')">
-
-})
-
-document.getElementById("thumbs").innerHTML=thumbs
+document.getElementById(id).innerText=n+" pieces left"
 
 }
 
-function changeImg(src){
+pieces("l1")
+pieces("l2")
+pieces("l3")
+pieces("l4")
+pieces("l5")
+pieces("l6")
+pieces("l7")
 
-document.getElementById("mainImg").src=src
+let time=16560
 
-}
-
-function closeProduct(){
-
-document.getElementById("productPopup").style.display="none"
-
-}
-
-function checkout(){
-
-window.location.href="thankyou.html"
-
-}
-
-function addCoins(){
-
-coins+=10
-
-document.getElementById("coins").innerText=coins
-
-}
-
-setTimeout(function(){
-
-document.getElementById("spin").style.display="block"
-
-},5000)
-
-function spin(){
-
-let options=[15,20,25]
-
-let result=options[Math.floor(Math.random()*options.length)]
-
-document.getElementById("spinResult").innerText="You won "+result+"% discount"
-
-}
-
-
-let time=4*60*60+36*60
-
-function countdown(){
+setInterval(function(){
 
 let h=Math.floor(time/3600)
-
 let m=Math.floor((time%3600)/60)
-
 let s=time%60
 
-document.getElementById("timer").innerText=h+"h "+m+"m "+s+"s"
+document.getElementById("timer").innerText=h+":"+m+":"+s
 
 time--
 
-}
-
-setInterval(countdown,1000)
+},1000)
 
 </script>
 
