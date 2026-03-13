@@ -3,7 +3,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Checkout - QuickCart</title>
+<title>QuickCart Checkout</title>
 
 <style>
 
@@ -25,7 +25,6 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
 
 .product{
 display:flex;
-align-items:center;
 gap:10px;
 margin-bottom:10px;
 }
@@ -34,21 +33,6 @@ margin-bottom:10px;
 width:60px;
 height:60px;
 object-fit:contain;
-}
-
-.qty{
-display:flex;
-gap:5px;
-}
-
-.qty button{
-padding:3px 10px;
-}
-
-.remove{
-color:red;
-cursor:pointer;
-font-size:14px;
 }
 
 .total{
@@ -101,7 +85,9 @@ Total ₹ <span id="total">0</span>
 
 <input type="tel" id="phone" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
 
-<input type="text" id="address" placeholder="Street Address" required>
+<input type="text" id="street" placeholder="Street Address" required>
+
+<input type="text" id="address" placeholder="Address (Area / Landmark)" required>
 
 <input type="text" id="pincode" placeholder="Pincode (6 digits)" pattern="[0-9]{6}" required>
 
@@ -155,11 +141,7 @@ let productsDiv = document.getElementById("products")
 
 let total = 0
 
-cart.forEach((item,index)=>{
-
-if(!item.qty) item.qty=1
-
-total += item.price * item.qty
+cart.forEach(item=>{
 
 productsDiv.innerHTML += `
 <div class="product">
@@ -171,6 +153,8 @@ productsDiv.innerHTML += `
 </div>
 `
 
+total += Number(item.price)
+
 })
 
 document.getElementById("total").innerText = total
@@ -180,11 +164,8 @@ document.getElementById("orderForm").onsubmit=function(e){
 
 e.preventDefault()
 
-let name=document.getElementById("name").value
 let phone=document.getElementById("phone").value
-let address=document.getElementById("address").value
 let pin=document.getElementById("pincode").value
-let state=document.getElementById("state").value
 let payment=document.getElementById("payment").value
 
 if(phone.length!=10){
@@ -197,31 +178,23 @@ alert("Enter valid pincode")
 return
 }
 
-let subject="QuickCart New Order"
-
-let body="Name: "+name+
-"%0APhone: "+phone+
-"%0AAddress: "+address+
-"%0APincode: "+pin+
-"%0AState: "+state+
-"%0APayment: "+payment+
-"%0ATotal: ₹"+total
-
-window.location.href="mailto:rounakpatel0723@gmail.com?subject="+subject+"&body="+body
-
 if(payment=="upi"){
 
 let upi="upi://pay?pa=rk86319625-1@oksbi&pn=QuickCart&am="+total+"&cu=INR"
 
-setTimeout(()=>{
 window.location.href=upi
-},1000)
-
-}
 
 setTimeout(()=>{
 window.location.href="thankyou.html"
 },2000)
+
+}
+
+if(payment=="cod"){
+
+window.location.href="thankyou.html"
+
+}
 
 }
 
