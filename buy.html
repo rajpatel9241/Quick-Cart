@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>QuickCart Checkout</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f5efe6;
+}
+
+header{
+background:black;
+color:white;
+padding:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+.quick{color:white;}
+.cart{color:#2b7cff;}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:20px;
+}
+
+.product{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+margin-bottom:20px;
+text-align:center;
+}
+
+.product img{
+width:100%;
+max-height:250px;
+object-fit:contain;
+}
+
+.price{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+.form{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:8px;
+margin-bottom:12px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#2b7cff;
+border:none;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.policy{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<span class="quick">Quick</span>
+<span class="cart">Cart</span>
+
+</header>
+
+<div class="container">
+
+<div class="product">
+
+<img src="chopper1.jpg">
+
+<h3>Smart Kitchen Chopper</h3>
+
+<div class="old">₹399</div>
+
+<div class="price">₹199</div>
+
+</div>
+
+<div class="form">
+
+<h3>Delivery Details</h3>
+
+<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
+
+<input type="text" name="Name" placeholder="Full Name" required>
+
+<input type="tel" name="Phone" placeholder="Mobile Number" required>
+
+<input type="text" name="Street" placeholder="Street Address" required>
+
+<input type="text" name="Address" placeholder="Full Address" required>
+
+<input type="number" name="Pincode" placeholder="Pincode" required>
+
+<select name="State" required>
+
+<option value="">Select State</option>
+
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+
+</select>
+
+<select name="Payment Method" required>
+
+<option value="">Payment Method</option>
+<option>Cash on Delivery</option>
+<option>Online Payment (UPI)</option>
+
+</select>
+
+<input type="hidden" name="_next" value="thankyou.html">
+
+<input type="hidden" name="_captcha" value="false">
+
+<button type="submit">Confirm Order</button>
+
+</form>
+
+</div>
+
+<div class="policy">
+
+<h3>Return Policy</h3>
+
+<p>
+
+✔ 7 Days Easy Return  
+✔ Replacement for damaged product  
+✔ 24x7 Customer Support  
+
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
