@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>QuickCart Store</title>
 
 <style>
@@ -30,26 +32,30 @@ font-weight:bold;
 .quick{color:white;}
 .cart{color:#2b7cff;}
 
-.cartcount{
+.carticon{
+font-size:22px;
+cursor:pointer;
+}
+
+.badge{
 background:red;
+color:white;
 padding:3px 7px;
 border-radius:50%;
 font-size:12px;
-margin-left:5px;
-}
-
-.timer{
-color:#ff4444;
-font-size:14px;
 }
 
 .container{
 padding:20px;
 }
 
+h2{
+margin-top:30px;
+}
+
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 }
 
@@ -75,10 +81,8 @@ margin-top:8px;
 }
 
 .thumbs img{
-width:45px;
-height:45px;
-object-fit:contain;
-border:1px solid #ddd;
+width:40px;
+height:40px;
 cursor:pointer;
 }
 
@@ -94,8 +98,8 @@ font-weight:bold;
 }
 
 .stock{
-color:red;
-font-size:13px;
+color:#ff4444;
+font-size:12px;
 }
 
 .btn{
@@ -108,7 +112,7 @@ cursor:pointer;
 }
 
 .cartbtn{
-background:#555;
+background:#444;
 color:white;
 }
 
@@ -128,11 +132,12 @@ color:white;
 <div class="logo">
 <span class="quick">Quick</span>
 <span class="cart">Cart</span>
-<span class="cartcount" id="cartCount">0</span>
 </div>
 
-<div class="timer">
-Offer Ends In <span id="timer">04:36:00</span>
+<div class="carticon" onclick="openCart()">
+
+🛒 <span class="badge" id="cartCount">0</span>
+
 </div>
 
 </header>
@@ -143,97 +148,71 @@ Offer Ends In <span id="timer">04:36:00</span>
 
 <div class="grid">
 
-<!-- OIL -->
-
-<div class="card">
-
-<img id="oilMain" src="oil1.jpg" class="main-img">
-
-<div class="thumbs">
-<img src="oil1.jpg" onclick="changeImg('oilMain',this)">
-<img src="oil2.jpg" onclick="changeImg('oilMain',this)">
-<img src="oil3.jpg" onclick="changeImg('oilMain',this)">
-<img src="oil4.jpg" onclick="changeImg('oilMain',this)">
-</div>
-
-<div class="old">₹299</div>
-<div class="price">₹149</div>
-<div class="stock">⚡ Only 7 pieces left</div>
-
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
-
-</div>
-
 <!-- CHOPPER -->
 
 <div class="card">
 
-<img id="chopperMain" src="chopper1.jpg" class="main-img">
+<img id="c1" src="chopper1.jpg" class="main-img">
 
 <div class="thumbs">
-<img src="chopper1.jpg" onclick="changeImg('chopperMain',this)">
-<img src="chopper2.jpg" onclick="changeImg('chopperMain',this)">
-<img src="chopper3.jpg" onclick="changeImg('chopperMain',this)">
-<img src="chopper4.jpg" onclick="changeImg('chopperMain',this)">
+
+<img src="chopper1.jpg" onclick="changeImg('c1',this)">
+<img src="chopper2.jpg" onclick="changeImg('c1',this)">
+<img src="chopper3.jpg" onclick="changeImg('c1',this)">
+<img src="chopper4.jpg" onclick="changeImg('c1',this)">
+
 </div>
 
 <div class="old">₹399</div>
 <div class="price">₹199</div>
-<div class="stock">⚡ Only 4 pieces left</div>
+<div class="stock">Only 6 pieces left</div>
 
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+<button class="btn cartbtn"
+onclick="addToCart('Vegetable Chopper',199,'chopper1.jpg')">
+Add to Cart
+</button>
+
+<button class="btn buybtn"
+onclick="buyProduct('Vegetable Chopper','chopper1.jpg',199)">
+Buy Now
+</button>
 
 </div>
 
-<!-- FAUCET -->
+<!-- OIL DISPENSER -->
 
 <div class="card">
 
-<img id="faucetMain" src="faucet1.jpg" class="main-img">
+<img id="o1" src="oil1.jpg" class="main-img">
 
 <div class="thumbs">
-<img src="faucet1.jpg" onclick="changeImg('faucetMain',this)">
-<img src="faucet2.jpg" onclick="changeImg('faucetMain',this)">
-<img src="faucet3.jpg" onclick="changeImg('faucetMain',this)">
-<img src="faucet4.jpg" onclick="changeImg('faucetMain',this)">
+
+<img src="oil1.jpg" onclick="changeImg('o1',this)">
+<img src="oil2.jpg" onclick="changeImg('o1',this)">
+<img src="oil3.jpg" onclick="changeImg('o1',this)">
+<img src="oil4.jpg" onclick="changeImg('o1',this)">
+
 </div>
 
 <div class="old">₹299</div>
-<div class="price">₹169</div>
-<div class="stock">⚡ Only 6 pieces left</div>
+<div class="price">₹149</div>
+<div class="stock">Only 8 pieces left</div>
 
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+<button class="btn cartbtn"
+onclick="addToCart('Oil Dispenser',149,'oil1.jpg')">
+Add to Cart
+</button>
 
-</div>
-
-<!-- SOAP -->
-
-<div class="card">
-
-<img id="soapMain" src="shoap1.jpg" class="main-img">
-
-<div class="thumbs">
-<img src="shoap1.jpg" onclick="changeImg('soapMain',this)">
-<img src="shoap2.jpg" onclick="changeImg('soapMain',this)">
-<img src="shoap3.jpg" onclick="changeImg('soapMain',this)">
-<img src="shoap4.jpg" onclick="changeImg('soapMain',this)">
-</div>
-
-<div class="old">₹499</div>
-<div class="price">₹249</div>
-<div class="stock">⚡ Only 8 pieces left</div>
-
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+<button class="btn buybtn"
+onclick="buyProduct('Oil Dispenser','oil1.jpg',149)">
+Buy Now
+</button>
 
 </div>
 
 </div>
 
-<h2 style="margin-top:40px;">Unique Keychains</h2>
+<h2>Unique Keychains</h2>
 
 <div class="grid">
 
@@ -241,20 +220,29 @@ Offer Ends In <span id="timer">04:36:00</span>
 
 <div class="card">
 
-<img id="gunMain" src="gun1.jpg" class="main-img">
+<img id="g1" src="gun1.jpg" class="main-img">
 
 <div class="thumbs">
-<img src="gun1.jpg" onclick="changeImg('gunMain',this)">
-<img src="gun2.jpg" onclick="changeImg('gunMain',this)">
-<img src="gun3.jpg" onclick="changeImg('gunMain',this)">
+
+<img src="gun1.jpg" onclick="changeImg('g1',this)">
+<img src="gun2.jpg" onclick="changeImg('g1',this)">
+<img src="gun3.jpg" onclick="changeImg('g1',this)">
+
 </div>
 
 <div class="old">₹449</div>
 <div class="price">₹229</div>
-<div class="stock">⚡ Only 5 pieces left</div>
+<div class="stock">Only 5 pieces left</div>
 
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+<button class="btn cartbtn"
+onclick="addToCart('Gun Keychain',229,'gun1.jpg')">
+Add to Cart
+</button>
+
+<button class="btn buybtn"
+onclick="buyProduct('Gun Keychain','gun1.jpg',229)">
+Buy Now
+</button>
 
 </div>
 
@@ -262,62 +250,28 @@ Offer Ends In <span id="timer">04:36:00</span>
 
 <div class="card">
 
-<img id="gearMain" src="gear1.jpg" class="main-img">
+<img id="gear" src="gear1.jpg" class="main-img">
 
 <div class="thumbs">
-<img src="gear1.jpg" onclick="changeImg('gearMain',this)">
-<img src="gear2.jpg" onclick="changeImg('gearMain',this)">
-<img src="gear3.jpg" onclick="changeImg('gearMain',this)">
-</div>
 
-<div class="old">₹449</div>
-<div class="price">₹229</div>
-<div class="stock">⚡ Only 9 pieces left</div>
+<img src="gear1.jpg" onclick="changeImg('gear',this)">
+<img src="gear2.jpg" onclick="changeImg('gear',this)">
 
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
-
-</div>
-
-<!-- DUMBBELL -->
-
-<div class="card">
-
-<img id="dumbleMain" src="dumble1.jpg" class="main-img">
-
-<div class="thumbs">
-<img src="dumble1.jpg" onclick="changeImg('dumbleMain',this)">
-<img src="dumble2.jpg" onclick="changeImg('dumbleMain',this)">
-<img src="dumble3.jpg" onclick="changeImg('dumbleMain',this)">
-</div>
-
-<div class="old">₹449</div>
-<div class="price">₹199</div>
-<div class="stock">⚡ Only 3 pieces left</div>
-
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
-
-</div>
-
-<!-- SWORD -->
-
-<div class="card">
-
-<img id="shordMain" src="shord1.jpg" class="main-img">
-
-<div class="thumbs">
-<img src="shord1.jpg" onclick="changeImg('shordMain',this)">
-<img src="shord2.jpg" onclick="changeImg('shordMain',this)">
-<img src="shord3.jpg" onclick="changeImg('shordMain',this)">
 </div>
 
 <div class="old">₹399</div>
 <div class="price">₹199</div>
-<div class="stock">⚡ Only 6 pieces left</div>
+<div class="stock">Only 4 pieces left</div>
 
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="location.href='buy.html'">Buy Now</button>
+<button class="btn cartbtn"
+onclick="addToCart('Gear Keychain',199,'gear1.jpg')">
+Add to Cart
+</button>
+
+<button class="btn buybtn"
+onclick="buyProduct('Gear Keychain','gear1.jpg',199)">
+Buy Now
+</button>
 
 </div>
 
@@ -328,29 +282,50 @@ Offer Ends In <span id="timer">04:36:00</span>
 <script>
 
 function changeImg(id,el){
-document.getElementById(id).src = el.src
+document.getElementById(id).src=el.src
 }
 
-let cart=0
+let cart=[]
 
-function addCart(){
-cart++
-document.getElementById("cartCount").innerText=cart
+function addToCart(name,price,img){
+
+cart.push({name,price,img})
+
+document.getElementById("cartCount").innerText=cart.length
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
 }
 
-let time = 16560
+function buyProduct(name,img,price){
 
-setInterval(function(){
+localStorage.setItem("productName",name)
+localStorage.setItem("productImg",img)
+localStorage.setItem("productPrice",price)
 
-let h=Math.floor(time/3600)
-let m=Math.floor((time%3600)/60)
-let s=time%60
+window.location.href="buy.html"
 
-document.getElementById("timer").innerText = h+":"+m+":"+s
+}
 
-time--
+function openCart(){
 
-},1000)
+if(cart.length==0){
+
+alert("Cart Empty")
+
+return
+
+}
+
+let p=cart[0]
+
+localStorage.setItem("productName",p.name)
+localStorage.setItem("productImg",p.img)
+localStorage.setItem("productPrice",p.price)
+
+window.location.href="buy.html"
+
+}
 
 </script>
 
