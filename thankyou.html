@@ -1,74 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Placed | QuickCart</title>
+
+<title>Order Confirmed - QuickCart</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#eaf2ff,#ffffff);
-display:flex;
-align-items:center;
-justify-content:center;
+padding:0;
 height:100vh;
-}
-
-.box{
-background:white;
-width:90%;
-max-width:500px;
-padding:40px;
-border-radius:15px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f7f3eb;
+font-family:Arial, Helvetica, sans-serif;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-.tick{
-font-size:60px;
-color:#4CAF50;
+.container{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+animation:pop 0.6s ease;
+max-width:400px;
+width:90%;
+}
+
+@keyframes pop{
+0%{transform:scale(0.7);opacity:0}
+100%{transform:scale(1);opacity:1}
+}
+
+.logo{
+font-size:36px;
+font-weight:bold;
 margin-bottom:15px;
 }
 
-h1{
-color:#1e73ff;
-margin-bottom:10px;
+.quick{
+color:white;
+background:black;
+padding:6px 12px;
+border-radius:8px;
 }
 
-.delivery{
-background:#eef3ff;
-padding:10px;
-border-radius:8px;
-margin:15px 0;
-font-weight:bold;
+.cart{
+color:#2b7cff;
+}
+
+.check{
+font-size:70px;
+color:#22c55e;
+animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+}
+
+h2{
+margin-top:10px;
 }
 
 p{
 color:#444;
 }
 
+.coin{
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+color:#f59e0b;
+}
+
+button{
+margin-top:25px;
+padding:12px 25px;
+border:none;
+background:#2b7cff;
+color:white;
+font-size:16px;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1f5ed8;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<div class="tick">✅</div>
-
-<h1>Thank You For Visiting QuickCart</h1>
-
-<p>Your Order Has Been Placed Successfully</p>
-
-<div class="delivery">
-📦 Delivery Time: 6 – 7 Days
+<div class="logo">
+<span class="quick">Quick</span>
+<span class="cart">Cart</span>
 </div>
 
-<p>Our Team Will Contact You Soon.</p>
+<div class="check">✔</div>
 
-<p>Thank you for shopping with QuickCart ❤️</p>
+<h2>Order Placed Successfully!</h2>
+
+<p>Your order will be delivered within <b>5-7 days</b>.</p>
+
+<div class="coin">
+🎁 You earned 10 QuickCoins
+</div>
+
+<button onclick="window.location.href='index.html'">
+Back To Store
+</button>
 
 </div>
 
