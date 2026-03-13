@@ -5,91 +5,71 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>QuickCart Checkout</title>
+<title>Order - QuickCart</title>
 
 <style>
 
 body{
 font-family:Arial;
-margin:0;
 background:#f5efe6;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
-header{
-background:black;
-color:white;
-padding:15px;
-font-size:22px;
-font-weight:bold;
-}
-
-.quick{color:white;}
-.cart{color:#2b7cff;}
-
-.container{
-max-width:600px;
-margin:auto;
-padding:20px;
-}
-
-.product{
+.box{
 background:white;
-padding:15px;
+padding:25px;
 border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-margin-bottom:20px;
+width:320px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
 text-align:center;
-}
-
-.product img{
-width:100%;
-max-height:250px;
-object-fit:contain;
-}
-
-.price{
-color:red;
-font-size:20px;
-font-weight:bold;
-}
-
-.old{
-text-decoration:line-through;
-color:gray;
-}
-
-.form{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
+margin-bottom:15px;
 }
 
 input,select{
 width:100%;
 padding:10px;
-margin-top:8px;
-margin-bottom:12px;
+margin-top:10px;
 border:1px solid #ccc;
 border-radius:5px;
 }
 
-button{
-width:100%;
-padding:12px;
-background:#2b7cff;
-border:none;
-color:white;
-font-size:16px;
-border-radius:6px;
+.qtybox{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-top:10px;
+}
+
+.qtybox button{
+width:40px;
+height:35px;
+font-size:18px;
 cursor:pointer;
 }
 
-.policy{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
+#qty{
+width:50px;
+text-align:center;
+}
+
+button.orderbtn{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#2b7cff;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
 }
 
 </style>
@@ -98,111 +78,115 @@ border-radius:10px;
 
 <body>
 
-<header>
+<div class="box">
 
-<span class="quick">Quick</span>
-<span class="cart">Cart</span>
+<h2>Order Details</h2>
 
-</header>
+<form onsubmit="return goThankyou()">
 
-<div class="container">
+<input id="name" placeholder="Full Name" required>
 
-<div class="product">
+<input id="phone" placeholder="Mobile Number" required>
 
-<img src="chopper1.jpg">
+<input id="address" placeholder="Street Address" required>
 
-<h3>Smart Kitchen Chopper</h3>
+<input id="pincode" placeholder="Pincode" required>
 
-<div class="old">₹399</div>
+<select required>
 
-<div class="price">₹199</div>
+<option>Select State</option>
+<option>Bihar</option>
+<option>Delhi</option>
+<option>Maharashtra</option>
+<option>Uttar Pradesh</option>
+<option>Gujarat</option>
+<option>Punjab</option>
+<option>Haryana</option>
+<option>Rajasthan</option>
+<option>West Bengal</option>
+<option>Madhya Pradesh</option>
+<option>Jharkhand</option>
+<option>Odisha</option>
+<option>Chhattisgarh</option>
+<option>Tamil Nadu</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+
+</select>
+
+<select required>
+
+<option>Cash on Delivery</option>
+<option>UPI Payment</option>
+
+</select>
+
+<div class="qtybox">
+
+<button type="button" onclick="minus()">-</button>
+
+<input id="qty" value="1" readonly>
+
+<button type="button" onclick="plus()">+</button>
 
 </div>
 
-<div class="form">
+<button class="orderbtn" type="submit">
 
-<h3>Delivery Details</h3>
+Confirm Order
 
-<form action="https://formsubmit.co/rounakpatel0723@gmail.com" method="POST">
-
-<input type="text" name="Name" placeholder="Full Name" required>
-
-<input type="tel" name="Phone" placeholder="Mobile Number" required>
-
-<input type="text" name="Street" placeholder="Street Address" required>
-
-<input type="text" name="Address" placeholder="Full Address" required>
-
-<input type="number" name="Pincode" placeholder="Pincode" required>
-
-<select name="State" required>
-
-<option value="">Select State</option>
-
-<option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
-<option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Goa</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
-<option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Kerala</option>
-<option>Madhya Pradesh</option>
-<option>Maharashtra</option>
-<option>Manipur</option>
-<option>Meghalaya</option>
-<option>Mizoram</option>
-<option>Nagaland</option>
-<option>Odisha</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Sikkim</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
-<option>Uttarakhand</option>
-<option>West Bengal</option>
-
-</select>
-
-<select name="Payment Method" required>
-
-<option value="">Payment Method</option>
-<option>Cash on Delivery</option>
-<option>Online Payment (UPI)</option>
-
-</select>
-
-<input type="hidden" name="_next" value="thankyou.html">
-
-<input type="hidden" name="_captcha" value="false">
-
-<button type="submit">Confirm Order</button>
+</button>
 
 </form>
 
 </div>
 
-<div class="policy">
+<script>
 
-<h3>Return Policy</h3>
+function plus(){
 
-<p>
+let q=document.getElementById("qty")
 
-✔ 7 Days Easy Return  
-✔ Replacement for damaged product  
-✔ 24x7 Customer Support  
+q.value=parseInt(q.value)+1
 
-</p>
+}
 
-</div>
+function minus(){
 
-</div>
+let q=document.getElementById("qty")
+
+if(q.value>1){
+
+q.value=parseInt(q.value)-1
+
+}
+
+}
+
+function goThankyou(){
+
+let name=document.getElementById("name").value
+
+let phone=document.getElementById("phone").value
+
+let address=document.getElementById("address").value
+
+if(name=="" || phone=="" || address==""){
+
+alert("Please fill all details")
+
+return false
+
+}
+
+window.location.href="thankyou.html"
+
+return false
+
+}
+
+</script>
 
 </body>
+
 </html>
