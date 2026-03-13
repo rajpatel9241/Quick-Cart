@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QuickCart</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f7f3eb;
+font-family:sans-serif;
+overflow:hidden;
+}
+
+.logo{
+font-size:60px;
+font-weight:bold;
+animation:zoom 2s ease;
+}
+
+.quick{
+color:white;
+background:black;
+padding:10px 15px;
+border-radius:10px;
+}
+
+.cart{
+color:#2b7cff;
+margin-left:5px;
+}
+
+@keyframes zoom{
+0%{transform:scale(0);opacity:0}
+100%{transform:scale(1);opacity:1}
+}
+
+.loader{
+position:absolute;
+bottom:80px;
+width:40px;
+height:40px;
+border:5px solid #ddd;
+border-top:5px solid #2b7cff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">
+<span class="quick">Quick</span><span class="cart">Cart</span>
+</div>
+
+<div class="loader"></div>
+
+<script>
+setTimeout(function(){
+window.location.href="index.html";
+},3000);
+</script>
+
+</body>
+</html>
